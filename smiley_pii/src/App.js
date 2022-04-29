@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import { arc } from 'd3'
 
 const width = 960;
 const height = 500;
@@ -9,56 +11,39 @@ const strokeWidth = 20
 const eyeOffsetX = 90
 const eyeOffsetY = 100
 const eyeRadius = 50;
+const mouthWidth = 20
+const mouthRadius = 140
+
+const mouthArc = arc()
+  .innerRadius(mouthRadius)
+  .outerRadius(mouthRadius+mouthWidth)
+  .startAngle(Math.PI / 2)
+  .endAngle(Math.PI * 3/2)
 
 function App() {
   return (
     <svg width={width} height={height}>
-      <circle
-        cx={centerX}
-        cy={centerY}
-        r={centerY - strokeWidth/2}
-        fill="yellow"
-        stroke="black"
-        stroke-width="10"
-      />
-      <circle
-        cx={centerX - eyeOffsetX}
-        cy={centerY - eyeOffsetY}
-        r={eyeRadius}
-      />
+      <g transform={`translate(${centerX}, ${centerY})`}>
         <circle
-          cx={centerX + eyeOffsetX}
-          cy={centerY - eyeOffsetY}
+          r={centerY - strokeWidth/2}
+          fill="yellow"
+          stroke="black"
+          stroke-width="10"
+        />
+        <circle
+          cx={-eyeOffsetX}
+          cy={-eyeOffsetY}
           r={eyeRadius}
         />
+        <circle
+          cx={eyeOffsetX}
+          cy={-eyeOffsetY}
+          r={eyeRadius}
+        />
+        <path d={mouthArc()}></path>
+      </g>
     </svg>
   );
 }
 
 export default App;
-
-
-
-<svg width="960" height="500">
-<circle
-  cx="480"
-  cy="250"
-  r="245"
-  fill="yellow"
-  stroke="black"
-  stroke-width="10"
->
-</circle>
-<circle
-  cx="350"
-  cy="180"
-  r="50"
->
-</circle>
-<circle
-  cx="600"
-  cy="180"
-  r="50"
->
-</circle>
-</svg>
