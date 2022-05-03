@@ -2,8 +2,15 @@
 <html>
     <head>
         <title>Loading and Parsing CSV Data</title>
+        <script src='https://unpkg.com/d3@7.4.4/dist/d3.min.js'></script>
+        <style>
+            pre {
+                font-size: 7em;
+            }
+        </style>
     </head>
     <body>
+        <pre id = 'message-container'></pre>
         <script>
             const csvUrl = 'https://gist.githubusercontent.com/coltenappleby/bf283f12acc2bbb2ddc83ecf7b07441b/raw/colors.csv'
             
@@ -12,9 +19,22 @@
                 return await response.text()
             };
 
-            fetchText(csvUrl).then(text =>{
-                console.log(text)
+            d3.csv(csvUrl).then(data => {
+                let message = '';
+                message + data.length + ' rows';
+                message + data.columns.length + ' columns';
+                message + d3.csvFormat(data).length /1024 + ' kB';
+                document.getElementById('message-container').textContent = message;
             })
+            // Fetch, async, and await
+            // fetchText(csvUrl).then(text =>{
+            //     const data = d3.csvParse(text)
+            //     let message = ''
+            //     message + data.length + ' rows';
+            //     message + data.columns.length + ' columns';
+            //     // message + text.length /1024 + ' kB';
+            //     document.getElementById('message-container').textContent = message;
+            // })
 
         </script>
     </body>
