@@ -1,11 +1,15 @@
 import "./App.css";
 import React from "react";
 import PieChart from './Charts/PieChart';
+import BarChart from "./Charts/BarChart";
 
 const App = () => {
 
   return (
-    <PieChart/>
+    <>
+      <BarChart/>
+      {/* <PieChart/> */}
+    </>
   )
   
 };
