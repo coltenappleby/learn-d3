@@ -45,7 +45,8 @@ const BarChart = ({ width = 960, height = 500 }) => {
 			<h1> Bar Chart </h1>
 
 			<svg width={width} height={height}>
-				<g transform={`translate(${margin.top},${margin.left})`}>
+				<g transform={`translate(${margin.top},${margin.left})`}> 
+                {/* Population totals on the bottom */}
                     {xScale.ticks().map(tickValue => (
                         <g transform={`translate(${xScale(tickValue)},0)`} key={tickValue}>
                             <line 
@@ -59,23 +60,41 @@ const BarChart = ({ width = 960, height = 500 }) => {
                                 style={{textAnchor: 'middle'}} 
                                 dy=".71em"
                                 y={innerHeight + 3} > 
-                                {tickValue}
+                                    {tickValue}
                             </text>
                         </g>
                     ))}
 
-                    {yScale.domain().map(tickValue => (
-                            <text style={{textAnchor: "end"}} dy=".32em" x={-3} y={yScale(tickValue)+ yScale.bandwidth()/2} key={tickValue}> {tickValue}</text>
+                    {yScale.domain().map(tickValue => ( //country names
+                            <text 
+                                style={{textAnchor: "end"}} 
+                                dy=".32em" 
+                                x={-3} 
+                                y={yScale(tickValue) + yScale.bandwidth()/2} 
+                                key={tickValue}> 
+                                    {tickValue}
+                            </text>
                     ))}
 
 					{data.map((d) => (
-						<rect
-							x={0}
-							y={yScale(d.Country)}
-							width={xScale(d.Population)}
-							height={yScale.bandwidth()}
-                            key={d.Country}
-						/>
+                        <g>
+                            <rect
+                                x={0}
+                                y={yScale(d.Country)}
+                                width={xScale(d.Population)}
+                                height={yScale.bandwidth()}
+                                key={d.Country}
+                                // fill="white"
+                            >
+                            </rect>
+                            <text 
+                                y={yScale(d.Country) + yScale.bandwidth()/2+7}
+                                x={xScale(d.Population)}
+                                style={{textAnchor: "end"}} 
+                                fill="white" >
+                                    {d.Population}
+                            </text>
+                        </g>
 					))}
 				</g>
 			</svg>
