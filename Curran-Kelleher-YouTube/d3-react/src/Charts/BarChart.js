@@ -32,8 +32,8 @@ const BarChart = ({ width = 960, height = 500 }) => {
 	const innerWidth = width - margin.left - margin.right;
 
 
-    const siFormat = format('.2s')
-    const xAxisTickFormat = n => siFormat(n).replace('G','B')
+    const siFormat = format('.2s') //split out so that we aren't creating the format function each time
+    const xAxisTickFormat = tickValue => siFormat(tickValue).replace('G','B')
 
 	const yScale = scaleBand() // invokes scaleband constructor that creates a new band scale LOL
 		.domain(data.map(yValue)) //setting the domain to the country
@@ -57,7 +57,7 @@ const BarChart = ({ width = 960, height = 500 }) => {
                         x={innerWidth/2} 
                         textAnchor='middle'
                         y={innerHeight+xAxisLabelOffsett}>Population</text>
-                    <Marks data = {data} xScale={xScale} yScale={yScale} xValue={xValue} yValue={yValue}/>
+                    <Marks data = {data} xScale={xScale} yScale={yScale} xValue={xValue} yValue={yValue} toolTipFormat={xAxisTickFormat}/>
 				</g>
 			</svg>
 		</>
