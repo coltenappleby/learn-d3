@@ -1,0 +1,20 @@
+body {
+    font-family: 'Courier Prime', monospace;
+}
+
+.tick line {
+    stroke: #C0C0BB;
+}
+
+.tick text {
+    fill: #8E8883;
+}
+
+.mark {
+    fill: #137B80;
+}
+
+.axis-label {
+    font-size: 2em;
+    fill: #8E8883;
+}

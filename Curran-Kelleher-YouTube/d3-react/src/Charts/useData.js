@@ -10,7 +10,7 @@ export const useData = ({ url = csvUrl}) => {
 
 	useEffect(() => {
 		const row = (d) => {
-			d.Population = +d["2020"]; // + is unary plus which is similar to parseFloat aka String to Number
+			d.Population = +d["2020"] * 1000; // + is unary plus which is similar to parseFloat aka String to Number
 			return d;
 		};
 		csv(url, row).then((data) => {
