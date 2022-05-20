@@ -8,8 +8,8 @@ const App = () => {
 
   return (
     <>
-      <BarChartGanttTest />
-      {/* <BarChart/> */}
+      {/* <BarChartGanttTest /> */}
+      <BarChart/>
       {/* <PieChart/> */}
     </>
   )
