@@ -1,4 +1,4 @@
-import './Chart.css'
+import '../Chart.css'
 
 export const AxisBottom = ( { xScale, innerHeight, tickFormat } ) => 
     xScale.ticks().map(tickValue => (
