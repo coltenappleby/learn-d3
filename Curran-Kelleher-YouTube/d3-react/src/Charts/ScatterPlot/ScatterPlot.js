@@ -5,7 +5,7 @@ import { useDataSP } from './useDataSP.js'
 import { AxisBottomSP } from './AxisBottomSP.js';
 import { AxisLeftSP } from './AxisLeftSP.js';
 import { MarksSP } from './MarksSP.js';
-
+import { Dropdown } from "./Dropdown.js";
 
 const width = 960;
 const height = 500;
@@ -19,25 +19,42 @@ const ScatterPlot = ({ width = 960, height = 500 }) => {
 	
     // Data for Bar Chart
     const data = useDataSP(csvUrl)
-    
+
+	const initialXAttribute = 'petal_length'
+	const [xAttribute, setXAttribute] = useState(initialXAttribute);
+    const xValue = d => d[xAttribute];
+	const xAxisLabel = 'Petal Length'
+	
+	const yValue = d => d.sepal_width; //Functions to convert data into only Country data
+	const yAxisLabel = "Sepal Width"
+
+
+
 	if (!data) {
 		return <pre>Loading...</pre>;
 	}
 
-    const xValue = d => d.petal_length;
-	const xAxisLabel = 'Petal Length'
+	const snakeToRegular = str =>
+		str.toLowerCase().replace(/([-_][a-z])/g, group =>
+			group
+			.toUpperCase()
+			.replace('-', ' ')
+			.replace('_', ' ')
+		);
 
-    const yValue = d => d.sepal_width; //Functions to convert data into only Country data
-	const yAxisLabel = "Sepal Width"
+	const attributes = data.columns.map(column => snakeToRegular(column))
+
 
 	// Setting Up Bar Chart
 	const innerHeight = height - margin.top - margin.bottom;
 	const innerWidth = width - margin.left - margin.right;
 
 
+	// Formatting of Axis
     const siFormat = format('.2s') //split out so that we aren't creating the format function each time
     const xAxisTickFormat = tickValue => siFormat(tickValue).replace('G','B')
 
+	// Scaling of Axis
 	const xScale = scaleLinear()
 		.domain(extent(data, xValue)) //[min(data, xValue), max(data, xValue)]
 		.range([0, innerWidth])
@@ -51,6 +68,9 @@ const ScatterPlot = ({ width = 960, height = 500 }) => {
 	return (
 		<>
 			<h1> Scatter Chart </h1>
+
+			<label for='x-select'> Choose some cool shit: </label>
+			<Dropdown options={attributes} id='x-select' selectedValue={xAttribute} onSelectedValueChange={setXAttribute}/>
 
 			<svg width={width} height={height}>
 				<g transform={`translate(${margin.left},${margin.top})`}> 
