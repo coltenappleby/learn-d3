@@ -1,0 +1,15 @@
+.marks .countries {
+    fill: #137B80;  
+    stroke-width: 1px;
+}
+
+
+.marks .sphere {
+    fill: bisque;
+}
+
+.marks .interiors {
+    /* fill: none;   */
+    stroke: red;
+    stroke-width: 1px;
+}
