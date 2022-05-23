@@ -10,5 +10,6 @@
     stroke-width: 3;
     fill: none;
     stroke-linejoin: round;
+    stroke-linecap: round;
 
 }
