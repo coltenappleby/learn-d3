@@ -3,6 +3,8 @@ import { csv } from 'd3'
 
 export const useDataSP = ( url ) => {
 
+    console.log(url)
+
     const [data, setData] = useState(null);
 
 	useEffect(() => {
@@ -16,9 +18,6 @@ export const useDataSP = ( url ) => {
 		csv(url, row).then(setData);
 	}, []);
     
+    console.log(data)
     return data
 };
-
-
-
-

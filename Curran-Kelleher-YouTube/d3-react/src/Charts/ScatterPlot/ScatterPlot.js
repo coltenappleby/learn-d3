@@ -13,6 +13,22 @@ const margin = { top: 15, right: 20, bottom: 55, left: 100 }
 const xAxisLabelOffset = 45
 const yAxisLabelOffset = 45
 
+const attributes = [
+	{ value: 'sepal_length', label: 'Sepal Length' },
+	{ value: 'sepal_width', label: 'Sepal Width' },
+	{ value: 'petal_length', label: 'Petal Length' },
+	{ value: 'petal_width', label: 'Petal Width' },
+	{ value: 'species', label: 'Species' }
+  ];
+
+  const getLabel = value => {
+	for(let i = 0; i < attributes.length; i++){
+		if(attributes[i].value == value){
+			return attributes[i].label
+		}
+	}
+}
+
 const ScatterPlot = ({ width = 960, height = 500 }) => {
 	const csvUrl =
 		"https://gist.githubusercontent.com/curran/a08a1080b88344b0c8a7/raw/0e7a9b0a5d22642a06d3d5b9bcbad9890c8ee534/iris.csv";
@@ -23,26 +39,33 @@ const ScatterPlot = ({ width = 960, height = 500 }) => {
 	const initialXAttribute = 'petal_length'
 	const [xAttribute, setXAttribute] = useState(initialXAttribute);
     const xValue = d => d[xAttribute];
-	const xAxisLabel = 'Petal Length'
+	const xAxisLabel = getLabel(xAttribute)
 	
-	const yValue = d => d.sepal_width; //Functions to convert data into only Country data
-	const yAxisLabel = "Sepal Width"
-
+	const initialYAttribute = 'sepal_width';
+	const [yAttribute, setYAttribute] = useState(initialYAttribute)
+	const yValue = d => d[yAttribute]; 
+	const yAxisLabel = getLabel(yAttribute)
 
 
 	if (!data) {
 		return <pre>Loading...</pre>;
 	}
 
-	const snakeToRegular = str =>
-		str.toLowerCase().replace(/([-_][a-z])/g, group =>
-			group
-			.toUpperCase()
-			.replace('-', ' ')
-			.replace('_', ' ')
-		);
+	// const snakeToCaps = str =>
+	// 	str.toLowerCase().replace(/([-_][a-z])/g, group =>
+	// 		group
+	// 			.replace('-', ' ')
+	// 			.replace('_', ' ')
+	// 	).toUpperCase()
 
-	const attributes = data.columns.map(column => snakeToRegular(column))
+	// const attributes = data.columns.map(column => {
+	// 	return {
+	// 		'value': column, 
+	// 		'label': snakeToCaps(column)
+	// 	}
+	// })
+
+	console.log(attributes)
 
 
 	// Setting Up Bar Chart
@@ -71,6 +94,9 @@ const ScatterPlot = ({ width = 960, height = 500 }) => {
 
 			<label for='x-select'> Choose some cool shit: </label>
 			<Dropdown options={attributes} id='x-select' selectedValue={xAttribute} onSelectedValueChange={setXAttribute}/>
+
+			<label for='y-select'> Choose some cool shit: </label>
+			<Dropdown options={attributes} id='y-select' selectedValue={yAttribute} onSelectedValueChange={setYAttribute}/>
 
 			<svg width={width} height={height}>
 				<g transform={`translate(${margin.left},${margin.top})`}> 
