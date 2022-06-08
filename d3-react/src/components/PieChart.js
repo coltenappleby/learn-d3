@@ -45,11 +45,13 @@ const PieChart = () => {
   
   console.log(pieArc(data[0]))
   return (
+    <>
+    <h1>Colten vs Jeff</h1> 
     <svg width={width} height={height} >
       <g transform={`translate(${centerX}, ${centerY})`}>
         {colorPie(data).map((d, i) => {
           return (
-          <>
+            <>
             <path 
               fill={d.data["color"]} 
               d={pieArc(d)}
@@ -60,28 +62,15 @@ const PieChart = () => {
                 transform={`translate(${pieArc.centroid(d)})`}
                 textAnchor='middle'
                 color={'white'}
-              >
+                >
                   {data[i].name}
               </text>
           </>
         )})}
 
       </g>
-
-
-
-      {/* <g transform={`translate(${centerX}, ${centerY})`}>
-      {data.map((d,i) => (
-        <path 
-          fill={d["Hex"]} 
-          d={ pieArc({
-            startAngle: i / data.length *2 * Math.PI, 
-            endAngle: (i+1) / data.length *2 * Math.PI   
-          })}
-        />
-      ))}
-      </g> */}
     </svg>
+    </>
   )
   
   
