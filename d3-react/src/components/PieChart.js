@@ -37,13 +37,13 @@ const PieChart = () => {
   }
   
   const colorPie = pie().value(d => d.value)
-  console.log(colorPie[0])
+  // console.log(colorPie[0])
   
   const pieArc = arc()
     .innerRadius(0)
     .outerRadius(radius)
   
-  console.log(pieArc(data[0]))
+  // console.log(pieArc(data[0]))
   return (
     <>
     <h1>Colten vs Jeff</h1> 
