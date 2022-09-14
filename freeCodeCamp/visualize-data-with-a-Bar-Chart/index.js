@@ -12,6 +12,17 @@ document.addEventListener('DOMContentLoaded', function(){
     // Size of plot
     const w = 1000
     const h = 1000
+    const margin = {"top": 25, "right": 25, "bottom": 25, "left": 25}
+
+    const innerWidth = w - margin.left - margin.right
+    const innerHeight = w - margin.top - margin.bottom
+
+    // the svg
+
+    const svg = d3.select(".chart")
+                    .append("svg")
+                    .attr("height", h)
+                    .attr("width", w)
 
     d3.json(url)
         .then((rawData) => {
@@ -34,12 +45,28 @@ document.addEventListener('DOMContentLoaded', function(){
 
             })
         
-
             // Scales
             
-            // const xScale = d3.scaleOrdinal()
-            //     .domain([d3.min(data.data, d=> d[0]), d3.max(data.data, d=>d[0])])
-            //     .range([0, w])
+            const xScale = d3.scaleTime()
+                .domain([d3.min(data, d => d[0]), d3.max(data, d => d[0])])
+                .range([0, innerWidth])
+            const barWidth = xScale(data[1][0])
+
+            const yScale = d3.scaleLinear()
+                .domain([d3.min(data, d=>d[2]), d3.max(data, d=>d[2])])
+                .range([innerHeight, 0])
+
+            console.log(yScale(data[data.length-1][2]))
+            
+            const bottomAxis = svg.append("g")
+                .attr("class", "axis")
+                .attr("transform", `translate(${margin.left+14}, ${h-margin.bottom})`)
+                .call(d3.axisBottom(xScale.nice()))
+                
+            const leftAxis = svg.append("g")
+                .attr("class", "axis")
+                .attr("transform", `translate(${margin.left+14}, ${margin.top})`)
+                .call(d3.axisLeft(yScale.nice()))
         })
             
     
