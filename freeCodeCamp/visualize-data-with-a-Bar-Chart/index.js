@@ -46,7 +46,6 @@ document.addEventListener('DOMContentLoaded', function(){
             })
         
             // Scales
-            
             const xScale = d3.scaleTime()
                 .domain([d3.min(data, d => d[0]), d3.max(data, d => d[0])])
                 .range([0, innerWidth])
@@ -56,17 +55,32 @@ document.addEventListener('DOMContentLoaded', function(){
                 .domain([d3.min(data, d=>d[2]), d3.max(data, d=>d[2])])
                 .range([innerHeight, 0])
 
-            console.log(yScale(data[data.length-1][2]))
             
+            // Need to add User Story #3
+
+            // Axis
             const bottomAxis = svg.append("g")
-                .attr("class", "axis")
-                .attr("transform", `translate(${margin.left+14}, ${h-margin.bottom})`)
+                .attr("id", "x-axis")
+                .attr("transform", `translate(${margin.left+14}, ${innerHeight+margin.top})`)
                 .call(d3.axisBottom(xScale.nice()))
                 
             const leftAxis = svg.append("g")
-                .attr("class", "axis")
+                .attr("id", "y-axis")
                 .attr("transform", `translate(${margin.left+14}, ${margin.top})`)
                 .call(d3.axisLeft(yScale.nice()))
+
+            data.forEach((d) => {})
+
+            // The Bars
+            const bars = svg.selectAll("rect")
+                .data(data)
+                .enter()
+                .append("rect")
+                .attr("x", d => xScale(d[0]))
+                .attr("y", d => {innerHeight-yScale(d[2])}) 
+                .attr("height", d => yScale(d[2]))
+                .attr("width", barWidth)
+                .attr("class", "bar")
         })
             
     
