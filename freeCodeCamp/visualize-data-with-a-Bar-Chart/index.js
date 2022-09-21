@@ -12,10 +12,11 @@ document.addEventListener('DOMContentLoaded', function(){
     // Size of plot
     const w = 1000
     const h = 1000
-    const margin = {"top": 25, "right": 25, "bottom": 25, "left": 25}
-
+    const margin = {"top": 25, "right": 25, "bottom": 25, "left": 39}
+    const barWidth = 1
+    
     const innerWidth = w - margin.left - margin.right
-    const innerHeight = w - margin.top - margin.bottom
+    const innerHeight =h - margin.top - margin.bottom
 
     // the SVG
 
@@ -23,12 +24,6 @@ document.addEventListener('DOMContentLoaded', function(){
                     .append("svg")
                     .attr("height", h)
                     .attr("width", w)
-
-    const plot = svg.append("div")
-                    .attr("x", margin.left)
-                    .attr("y", height-margin.top)
-                    .attr("height", innerHeight)
-                    .attr("width", innerWidth)
 
     d3.json(url)
         .then((rawData) => {
@@ -55,26 +50,22 @@ document.addEventListener('DOMContentLoaded', function(){
             const xScale = d3.scaleTime()
                 .domain([d3.min(data, d => d[0]), d3.max(data, d => d[0])])
                 .range([0, innerWidth])
-            const barWidth = xScale(data[1][0])
 
             const yScale = d3.scaleLinear()
                 .domain([d3.min(data, d=>d[2]), d3.max(data, d=>d[2])])
                 .range([innerHeight, 0])
 
-            
             // Need to add User Story #3
 
             // Axis
             const bottomAxis = svg.append("g")
                 .attr("id", "x-axis")
-                // .attr("transform", `translate(${margin.left+14}, ${innerHeight+margin.top})`)
-                .attr("transform", `translate(${0}, ${innerHeight})`) // with plot
+                .attr("transform", `translate(${margin.left}, ${h-margin.bottom})`)
                 .call(d3.axisBottom(xScale.nice()))
                 
             const leftAxis = svg.append("g")
                 .attr("id", "y-axis")
-                // .attr("transform", `translate(${margin.left+14}, ${margin.top})`)
-                .attr("transform", `translate(${14}, ${0})`) // with plot
+                .attr("transform", `translate(${margin.left}, ${margin.top})`)
                 .call(d3.axisLeft(yScale.nice()))
 
             data.forEach((d) => {})
@@ -84,10 +75,10 @@ document.addEventListener('DOMContentLoaded', function(){
                 .data(data)
                 .enter()
                 .append("rect")
-                .attr("x", d => xScale(d[0]))
-                .attr("y", d => {innerHeight-yScale(d[2])}) 
+                .attr("y", d => innerHeight) 
+                .attr("x", d => xScale(d[0])+14)
                 .attr("height", d => yScale(d[2]))
-                .attr("width", barWidth)
+                .attr("width", w/data.length-barWidth)
                 .attr("class", "bar")
         })
             
