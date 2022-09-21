@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function(){
     const barWidth = 1
     
     const innerWidth = w - margin.left - margin.right
-    const innerHeight =h - margin.top - margin.bottom
+    const innerHeight = h - margin.top - margin.bottom
 
     // the SVG
 
@@ -51,9 +51,13 @@ document.addEventListener('DOMContentLoaded', function(){
                 .domain([d3.min(data, d => d[0]), d3.max(data, d => d[0])])
                 .range([0, innerWidth])
 
-            const yScale = d3.scaleLinear()
+            const yAxisScale = d3.scaleLinear()
                 .domain([d3.min(data, d=>d[2]), d3.max(data, d=>d[2])])
                 .range([innerHeight, 0])
+
+            const yScale = d3.scaleLinear()
+                .domain([d3.min(data, d=>d[2]), d3.max(data, d=>d[2])])
+                .range([0, innerHeight])
 
             // Need to add User Story #3
 
@@ -66,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function(){
             const leftAxis = svg.append("g")
                 .attr("id", "y-axis")
                 .attr("transform", `translate(${margin.left}, ${margin.top})`)
-                .call(d3.axisLeft(yScale.nice()))
+                .call(d3.axisLeft(yAxisScale.nice()))
 
             data.forEach((d) => {})
 
@@ -75,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 .data(data)
                 .enter()
                 .append("rect")
-                .attr("y", d => innerHeight) 
+                .attr("y", d => h-margin.bottom-yScale(d[2])) 
                 .attr("x", d => xScale(d[0])+14)
                 .attr("height", d => yScale(d[2]))
                 .attr("width", w/data.length-barWidth)
