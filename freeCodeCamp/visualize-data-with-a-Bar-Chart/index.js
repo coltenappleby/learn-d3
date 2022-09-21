@@ -17,12 +17,18 @@ document.addEventListener('DOMContentLoaded', function(){
     const innerWidth = w - margin.left - margin.right
     const innerHeight = w - margin.top - margin.bottom
 
-    // the svg
+    // the SVG
 
     const svg = d3.select(".chart")
                     .append("svg")
                     .attr("height", h)
                     .attr("width", w)
+
+    const plot = svg.append("div")
+                    .attr("x", margin.left)
+                    .attr("y", height-margin.top)
+                    .attr("height", innerHeight)
+                    .attr("width", innerWidth)
 
     d3.json(url)
         .then((rawData) => {
@@ -61,12 +67,14 @@ document.addEventListener('DOMContentLoaded', function(){
             // Axis
             const bottomAxis = svg.append("g")
                 .attr("id", "x-axis")
-                .attr("transform", `translate(${margin.left+14}, ${innerHeight+margin.top})`)
+                // .attr("transform", `translate(${margin.left+14}, ${innerHeight+margin.top})`)
+                .attr("transform", `translate(${0}, ${innerHeight})`) // with plot
                 .call(d3.axisBottom(xScale.nice()))
                 
             const leftAxis = svg.append("g")
                 .attr("id", "y-axis")
-                .attr("transform", `translate(${margin.left+14}, ${margin.top})`)
+                // .attr("transform", `translate(${margin.left+14}, ${margin.top})`)
+                .attr("transform", `translate(${14}, ${0})`) // with plot
                 .call(d3.axisLeft(yScale.nice()))
 
             data.forEach((d) => {})
