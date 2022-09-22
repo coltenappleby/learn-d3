@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 ] 
 
             })
+            
         
             // Scales
             const xScale = d3.scaleTime()
@@ -92,7 +93,8 @@ document.addEventListener('DOMContentLoaded', function(){
                 // Attributes specified in User Story #7 & #8
                 .attr("data-date", d => d[1])
                 .attr("data-gdp", d => d[2])
-                // 
+                // tooltip
+                .on("mouseover", (e,d) => console.log(`${e.target} - ${d}`))
         })
             
     
