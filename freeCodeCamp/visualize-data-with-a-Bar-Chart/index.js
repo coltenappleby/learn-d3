@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     // Size of plot
     const w = 1000
-    const h = 1000
+    const h = 600
     const margin = {"top": 25, "right": 25, "bottom": 25, "left": 39}
     const barWidth = 1
     
@@ -42,7 +42,12 @@ document.addEventListener('DOMContentLoaded', function(){
                     q = 'Q4'
                 }
 
-                return [date, `${year}-${q}`, event[1]]
+                //this should probs be an object
+                return [
+                    date, // Date in JS Date Format
+                    `${year}-${q}`, // Date in human readable format
+                    event[1] // GDP for that quarter - No Edits 
+                ] 
 
             })
         
@@ -66,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 .attr("id", "x-axis")
                 .attr("transform", `translate(${margin.left}, ${h-margin.bottom})`)
                 .call(d3.axisBottom(xScale.nice()))
-                
+
             const leftAxis = svg.append("g")
                 .attr("id", "y-axis")
                 .attr("transform", `translate(${margin.left}, ${margin.top})`)
@@ -75,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function(){
             data.forEach((d) => {})
 
             // The Bars
-            const bars = svg.selectAll("rect")
+            const bars = svg.selectAll("bar")
                 .data(data)
                 .enter()
                 .append("rect")
@@ -84,6 +89,10 @@ document.addEventListener('DOMContentLoaded', function(){
                 .attr("height", d => yScale(d[2]))
                 .attr("width", w/data.length-barWidth)
                 .attr("class", "bar")
+                // Attributes specified in User Story #7 & #8
+                .attr("data-date", d => d[1])
+                .attr("data-gdp", d => d[2])
+                // 
         })
             
     
