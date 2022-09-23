@@ -80,6 +80,17 @@ document.addEventListener('DOMContentLoaded', function(){
 
             data.forEach((d) => {})
 
+            // Tooltip
+            let tooltip = d3.select(".chart")
+                .append("div")
+                .attr('id', 'tooltip')
+                .style("opacity", 0)
+                .style("background-color", "red")
+                .style("border", "solid")
+                .style("border-width", "2px")
+                .style("border-radius", "5px")
+                .style("padding", "5px")               
+
             // The Bars
             const bars = svg.selectAll("bar")
                 .data(data)
@@ -94,7 +105,14 @@ document.addEventListener('DOMContentLoaded', function(){
                 .attr("data-date", d => d[1])
                 .attr("data-gdp", d => d[2])
                 // tooltip
-                .on("mouseover", (e,d) => console.log(`${e.target} - ${d}`))
+                // .on("mouseover", (e,d) => console.log(d))
+                .on("mouseover", (e,d) => {
+                    tooltip
+                        .style("opacity", 1)
+                        .style("left", (d3.mouse(this)[0]+70) + "px")
+                        .style("top", (d3.mouse(this)[1]) + "px")
+                })
+
         })
             
     
