@@ -28,9 +28,9 @@ document.addEventListener('DOMContentLoaded', function(){
     // Tooltip
     let tooltip = d3.select(".chart")
         .append("div")
-        .attr('id', 'tooltip')
+        .attr('class', 'tooltip')
         .style("opacity", 0)
-        .style("background-color", "red")
+        // .style("background-color", "red")
         // .style("border", "solid")
         // .style("border-width", "2px")
         // .style("border-radius", "5px")
@@ -44,7 +44,6 @@ document.addEventListener('DOMContentLoaded', function(){
                 const date = new Date(event[0])
                 const year = event[0].substring(0,4)
                 let q
-                // console.log(event[0].substring(5,6))
                 if(event[0].substring(5,7) ==  '01'){
                     q = 'Q1'
                 } else if(event[0].substring(5,7) ==  '04'){
@@ -109,13 +108,11 @@ document.addEventListener('DOMContentLoaded', function(){
                 // tooltip
                 // .on("mouseover", (e,d) => console.log(d))
                 .on("mouseover", (e,d) => {
-                    console.log(d)
                     tooltip
                         .html(`<br> ${d[1]} </br>`)
                         .style("opacity", 1)
-                        // .style("left",  xScale(d[0])+14 + "px")
-                        .style("left",  100 + "px")
-                        .style("top", 1000 + "px")
+                        .style("left",  xScale(d[0])+14 + "px")
+                        .style("top", innerHeight-50 + "px")
                 })
 
         })
