@@ -31,9 +31,9 @@ document.addEventListener('DOMContentLoaded', function(){
         .attr('id', 'tooltip')
         .style("opacity", 0)
         .style("background-color", "red")
-        .style("border", "solid")
-        .style("border-width", "2px")
-        .style("border-radius", "5px")
+        // .style("border", "solid")
+        // .style("border-width", "2px")
+        // .style("border-radius", "5px")
         .style("padding", "5px")   
 
 
@@ -44,11 +44,12 @@ document.addEventListener('DOMContentLoaded', function(){
                 const date = new Date(event[0])
                 const year = event[0].substring(0,4)
                 let q
-                if(event[0].substring(5,6) ==  '01'){
+                // console.log(event[0].substring(5,6))
+                if(event[0].substring(5,7) ==  '01'){
                     q = 'Q1'
-                } else if(event[0].substring(5,6) ==  '04'){
+                } else if(event[0].substring(5,7) ==  '04'){
                     q = 'Q2'
-                } else if(event[0].substring(5,6) ==  '07'){
+                } else if(event[0].substring(5,7) ==  '07'){
                     q = 'Q3'
                 } else {
                     q = 'Q4'
@@ -108,11 +109,13 @@ document.addEventListener('DOMContentLoaded', function(){
                 // tooltip
                 // .on("mouseover", (e,d) => console.log(d))
                 .on("mouseover", (e,d) => {
+                    console.log(d)
                     tooltip
+                        .html(`<br> ${d[1]} </br>`)
                         .style("opacity", 1)
                         // .style("left",  xScale(d[0])+14 + "px")
                         .style("left",  100 + "px")
-                        .style("top", h-100 + "px")
+                        .style("top", 1000 + "px")
                 })
 
         })
