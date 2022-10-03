@@ -21,9 +21,21 @@ document.addEventListener('DOMContentLoaded', function(){
     // the SVG
 
     const svg = d3.select(".chart")
-                    .append("svg")
-                    .attr("height", h)
-                    .attr("width", w)
+        .append("svg")
+        .attr("height", h)
+        .attr("width", w)
+
+    // Tooltip
+    let tooltip = d3.select(".chart")
+        .append("div")
+        .attr('id', 'tooltip')
+        .style("opacity", 0)
+        .style("background-color", "red")
+        .style("border", "solid")
+        .style("border-width", "2px")
+        .style("border-radius", "5px")
+        .style("padding", "5px")   
+
 
     d3.json(url)
         .then((rawData) => {
@@ -78,18 +90,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 .attr("transform", `translate(${margin.left}, ${margin.top})`)
                 .call(d3.axisLeft(yAxisScale.nice()))
 
-            data.forEach((d) => {})
-
-            // Tooltip
-            let tooltip = d3.select(".chart")
-                .append("div")
-                .attr('id', 'tooltip')
-                .style("opacity", 0)
-                .style("background-color", "red")
-                .style("border", "solid")
-                .style("border-width", "2px")
-                .style("border-radius", "5px")
-                .style("padding", "5px")               
+            data.forEach((d) => {})            
 
             // The Bars
             const bars = svg.selectAll("bar")
@@ -109,8 +110,9 @@ document.addEventListener('DOMContentLoaded', function(){
                 .on("mouseover", (e,d) => {
                     tooltip
                         .style("opacity", 1)
-                        .style("left", (d3.mouse(this)[0]+70) + "px")
-                        .style("top", (d3.mouse(this)[1]) + "px")
+                        // .style("left",  xScale(d[0])+14 + "px")
+                        .style("left",  100 + "px")
+                        .style("top", h-100 + "px")
                 })
 
         })
