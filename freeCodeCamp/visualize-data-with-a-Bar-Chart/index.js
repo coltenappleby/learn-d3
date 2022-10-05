@@ -10,23 +10,24 @@ document.addEventListener('DOMContentLoaded', function(){
     const url = 'https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json'
 
     // Size of plot
-    const w = 1000
-    const h = 600
-    const margin = {"top": 25, "right": 25, "bottom": 25, "left": 39}
+    const width = 800
+    const height = 400
+    const margin = {"top": 25, "right": 25, "bottom": 25, "left": 40}
     const barWidth = 1
+    const outerBound = 25;
     
-    const innerWidth = w - margin.left - margin.right
-    const innerHeight = h - margin.top - margin.bottom
+    const innerWidth = width - margin.left - margin.right
+    const innerHeight = height - margin.top - margin.bottom
 
     // the SVG
 
-    const svg = d3.select(".chart")
+    const svg = d3.select(".container")
         .append("svg")
-        .attr("height", h)
-        .attr("width", w)
+        .attr("height", height + margin.top + margin.bottom)
+        .attr("width", width + margin.left + margin.right)
 
     // Tooltip
-    let tooltip = d3.select(".chart")
+    let tooltip = d3.select(".container")
         .append("div")
         .attr('class', 'tooltip')
         .style("opacity", 0)
@@ -67,22 +68,22 @@ document.addEventListener('DOMContentLoaded', function(){
             // Scales
             const xScale = d3.scaleTime()
                 .domain([d3.min(data, d => d[0]), d3.max(data, d => d[0])])
-                .range([0, innerWidth])
+                .range([0, width])
 
             const yAxisScale = d3.scaleLinear()
                 .domain([d3.min(data, d=>d[2]), d3.max(data, d=>d[2])])
-                .range([innerHeight, 0])
+                .range([height, 0])
 
             const yScale = d3.scaleLinear()
                 .domain([d3.min(data, d=>d[2]), d3.max(data, d=>d[2])])
-                .range([0, innerHeight])
+                .range([0, height])
 
             // Need to add User Story #3
 
             // Axis
             const bottomAxis = svg.append("g")
                 .attr("id", "x-axis")
-                .attr("transform", `translate(${margin.left}, ${h-margin.bottom})`)
+                .attr("transform", `translate(${margin.left}, ${height+margin.top})`)
                 .call(d3.axisBottom(xScale.nice()))
 
             const leftAxis = svg.append("g")
@@ -97,22 +98,29 @@ document.addEventListener('DOMContentLoaded', function(){
                 .data(data)
                 .enter()
                 .append("rect")
-                .attr("y", d => h-margin.bottom-yScale(d[2])) 
-                .attr("x", d => xScale(d[0])+14)
+                .attr("y", d => height-yScale(d[2])) 
+                .attr("x", d => xScale(d[0]))
                 .attr("height", d => yScale(d[2]))
-                .attr("width", w/data.length-barWidth)
+                .attr("width", width/data.length-barWidth)
+                .attr("transform", `translate(${margin.left}, ${margin.top})`)
+
                 .attr("class", "bar")
+                
                 // Attributes specified in User Story #7 & #8
                 .attr("data-date", d => d[1])
                 .attr("data-gdp", d => d[2])
+                
                 // tooltip
-                // .on("mouseover", (e,d) => console.log(d))
                 .on("mouseover", (e,d) => {
+                    tooltip.transition().duration(200).style('opacity', 0.9);
                     tooltip
                         .html(`<br> ${d[1]} </br>`)
                         .style("opacity", 1)
                         .style("left",  xScale(d[0])+14 + "px")
-                        .style("top", innerHeight-50 + "px")
+                        .style("top", innerHeight-50 + "px");
+                })
+                .on("mouseout", () => {
+                    tooltip.transition().duration(200).style('opacity', 0.0)
                 })
 
         })

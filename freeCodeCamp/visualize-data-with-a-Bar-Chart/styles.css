@@ -3,7 +3,7 @@ body {
     font-family: "Helvetica", sans-serif;
     background-color: black;
 }
-.chart {
+.container {
   background-color: white;
 }
 rect {
