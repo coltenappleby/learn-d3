@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 .attr("data-gdp", d => d[2])
                 
                 // tooltip
-                .on("mouseover", (e,d) => {
+                .on("mouseover", (d) => {
                     tooltip.transition().duration(200).style('opacity', 0.9);
                     tooltip
                         .html(`<br> ${d[1]} </br>`)
