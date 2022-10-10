@@ -111,12 +111,14 @@ document.addEventListener('DOMContentLoaded', function(){
                 .attr("data-gdp", d => d[2])
                 
                 // tooltip
-                .on("mouseover", (d) => {
+                .on("mouseover", (e,d) => {
                     tooltip.transition().duration(200).style('opacity', 0.9);
                     tooltip
                         .html(`<br> ${d[1]} </br>`)
                         .style("opacity", 1)
-                        .style("left",  xScale(d[0])+14 + "px")
+                        // .style("left", "calc(50% - " + xScale(d[0])+14 +"px)")
+                        .style("left", e.clientX +"px)")
+                        // .style("left",  xScale(d[0])+14 + "px")
                         .style("top", innerHeight-50 + "px");
                 })
                 .on("mouseout", () => {
