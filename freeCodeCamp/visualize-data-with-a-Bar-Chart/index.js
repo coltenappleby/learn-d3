@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function(){
     // Tooltip
     let tooltip = d3.select(".container")
         .append("div")
-        .attr('class', 'tooltip')
+        .attr('id', 'tooltip')
         .style("opacity", 0)
         // .style("background-color", "red")
         // .style("border", "solid")
@@ -118,8 +118,9 @@ document.addEventListener('DOMContentLoaded', function(){
                         .style("opacity", 1)
                         // .style("left", "calc(50% - " + xScale(d[0])+14 +"px)")
                         .style("left", e.clientX +"px)")
-                        // .style("left",  xScale(d[0])+14 + "px")
-                        .style("top", innerHeight-50 + "px");
+                        .style("left",  xScale(d[0])+14 + "px")
+                        .style("top", innerHeight-50 + "px")
+                        .attr("data-date", d[2])
                 })
                 .on("mouseout", () => {
                     tooltip.transition().duration(200).style('opacity', 0.0)

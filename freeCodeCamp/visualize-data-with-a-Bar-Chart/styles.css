@@ -30,7 +30,7 @@ button:hover {
   background-color: #0F5897;
   border: 1px solid #0F5897;
 }
-div.tooltip {	
+div #tooltip {	
   position: absolute;			
   text-align: center;			
   width: 60px;					
