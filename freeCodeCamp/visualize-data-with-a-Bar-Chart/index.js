@@ -59,7 +59,8 @@ document.addEventListener('DOMContentLoaded', function(){
                 return [
                     date, // Date in JS Date Format
                     `${year}-${q}`, // Date in human readable format
-                    event[1] // GDP for that quarter - No Edits 
+                    event[1], // GDP for that quarter - No Edits 
+                    event[0]
                 ] 
 
             })
@@ -107,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 .attr("class", "bar")
                 
                 // Attributes specified in User Story #7 & #8
-                .attr("data-date", d => d[1])
+                .attr("data-date", d => d[3])
                 .attr("data-gdp", d => d[2])
                 
                 // tooltip
@@ -118,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function(){
                         .style("opacity", 1)
                         // .style("left", "calc(50% - " + xScale(d[0])+14 +"px)")
                         .style("left", e.clientX +"px)")
-                        .style("left",  xScale(d[0])+14 + "px")
+                        .style("left",  e.pageX + 14 + "px")
                         .style("top", innerHeight-50 + "px")
                         .attr("data-date", d[2])
                 })
