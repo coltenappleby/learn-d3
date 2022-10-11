@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function(){
                         .style("left", e.clientX +"px)")
                         .style("left",  e.pageX + 14 + "px")
                         .style("top", innerHeight-50 + "px")
-                        .attr("data-date", d[2])
+                        .attr("data-date", d[3])
                 })
                 .on("mouseout", () => {
                     tooltip.transition().duration(200).style('opacity', 0.0)
