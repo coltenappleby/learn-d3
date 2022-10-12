@@ -56,11 +56,13 @@ document.addEventListener('DOMContentLoaded', function(){
             .attr('transform', `translate(${left}, ${height})`)
             .call(d3.axisBottom(xScale))
 
+        const formatTime = d3.timeFormat(`%M:%S`)
+
         svg.append("g")
             .attr("id", "y-axis")
             .attr('transform', `translate(${left}, ${0})`)
             // .call(d3.axisLeft(yScale).tickFormat(d=>`${d.getMinutes()}:${d.getSeconds()}`))
-            .call(d3.axisLeft(yScale).tickFormat(d=>`${d.getMinutes()}:${d.getSeconds()}`))
+            .call(d3.axisLeft(yScale).tickFormat(formatTime))
             // .tickFormat('%M:%S')
             
         // Time for our dots
