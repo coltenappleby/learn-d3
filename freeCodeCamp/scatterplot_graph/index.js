@@ -25,6 +25,17 @@ document.addEventListener('DOMContentLoaded', function(){
 
     d3.json(url).then((data) => {
 
+        // const data = rawData.map((d) => {
+
+        //     const date = new Date(d.Time)
+
+
+        //     return {}
+
+
+
+        // })
+
         // Axis
 
         const minYear = d3.min(data, d => d.Year)
@@ -34,8 +45,8 @@ document.addEventListener('DOMContentLoaded', function(){
         const maxTime = d3.max(data, d => d.Seconds)
 
         const xScale = d3.scaleLinear()
-                        .domain([minYear, maxYear])
-                        .range([0, width]).nice()
+                        .domain([minYear-1, maxYear])
+                        .range([0, width])
 
         const yScale = d3.scaleLinear()
                         .domain([minTime, maxTime])
@@ -54,6 +65,20 @@ document.addEventListener('DOMContentLoaded', function(){
             .attr("id", "y-axis")
             .attr('transform', `translate(${left}, ${0})`)
             .call(d3.axisLeft(yAxisScale))
+
+        // Time for our dots
+
+        const dots = svg.append('g')
+            .selectAll('dot')
+            .data(data)
+            .enter()
+            .append("circle")
+                .attr("cx", d => xScale(d.Year))
+                .attr("cy", d => yScale(d.Seconds))
+                .attr("r", 4)
+                .attr("data-xvalue", d => xScale(d.Year))
+                .attr("data-yvalue", d => yScale(d.Seconds))
+            .attr('transform', `translate(${left}, ${0})`)
 
 
     })
