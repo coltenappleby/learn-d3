@@ -23,36 +23,31 @@ document.addEventListener('DOMContentLoaded', function(){
         .style("padding", "5px")   
 
 
-    d3.json(url).then((data) => {
+    d3.json(url).then((rawData) => {
 
-        // const data = rawData.map((d) => {
+        const data = rawData.map((d) => {
 
-        //     const date = new Date(d.Time)
+            const timeSeconds = new Date(d.Seconds*1000)
 
-
-        //     return {}
-
-
-
-        // })
+            return {...d, timeSeconds: timeSeconds}
+        })
 
         // Axis
-
         const minYear = d3.min(data, d => d.Year)
         const maxYear = d3.max(data, d => d.Year)
 
-        const minTime = d3.min(data, d => d.Seconds)
-        const maxTime = d3.max(data, d => d.Seconds)
+        const minTime = d3.min(data, d => d.timeSeconds)
+        const maxTime = d3.max(data, d => d.timeSeconds)
 
         const xScale = d3.scaleLinear()
                         .domain([minYear-1, maxYear])
                         .range([0, width])
 
-        const yScale = d3.scaleLinear()
+        const yScale = d3.scaleTime()
                         .domain([minTime, maxTime])
                         .range([0, height])
         
-        const yAxisScale = d3.scaleLinear()
+        const yAxisScale = d3.scaleTime()
                         .domain([minTime, maxTime])
                         .range([height, 0])
 
@@ -64,20 +59,21 @@ document.addEventListener('DOMContentLoaded', function(){
         svg.append("g")
             .attr("id", "y-axis")
             .attr('transform', `translate(${left}, ${0})`)
-            .call(d3.axisLeft(yAxisScale))
-
+            // .call(d3.axisLeft(yScale).tickFormat(d=>`${d.getMinutes()}:${d.getSeconds()}`))
+            .call(d3.axisLeft(yScale).tickFormat(d=>`${d.getMinutes()}:${d.getSeconds()}`))
+            // .tickFormat('%M:%S')
+            
         // Time for our dots
-
         const dots = svg.append('g')
             .selectAll('dot')
             .data(data)
             .enter()
             .append("circle")
                 .attr("cx", d => xScale(d.Year))
-                .attr("cy", d => yScale(d.Seconds))
+                .attr("cy", d => yScale(d.timeSeconds))
                 .attr("r", 4)
                 .attr("data-xvalue", d => xScale(d.Year))
-                .attr("data-yvalue", d => yScale(d.Seconds))
+                .attr("data-yvalue", d => yScale(d.timeSeconds))
             .attr('transform', `translate(${left}, ${0})`)
 
 
