@@ -71,12 +71,34 @@ document.addEventListener('DOMContentLoaded', function(){
             .data(data)
             .enter()
             .append("circle")
+                .attr('class', 'dot')
                 .attr("cx", d => xScale(d.Year))
                 .attr("cy", d => yScale(d.timeSeconds))
                 .attr("r", 4)
-                .attr("data-xvalue", d => xScale(d.Year))
-                .attr("data-yvalue", d => yScale(d.timeSeconds))
+                .attr("data-xvalue", d => d.Year)
+                .attr("data-yvalue", d => d.timeSeconds)
+                .style('fill', d => {
+                    d.Doping ? 'rgb(31, 119, 180)' : 'rgb(255, 127, 14)'                            
+                })
             .attr('transform', `translate(${left}, ${0})`)
+            .on("mouseover", (e,d)=> {
+                console.log(e)
+                tooltip.transition().duration(200).style('opacity', 0.9)
+                tooltip
+                    .html(
+                        `${d.Name}: ${d.Nationality} </br> </br>
+                        ${d.Year}, ${d.Time} </br>
+                        ${d.Doping}
+                        `
+                    )
+                    .style('opacity', 1)
+                    .style('left', e.pageX+'px')
+                    .style('top', e.pageY+'px')
+                    .style('font-size', '6px')
+            })
+            .on("mouseout", () => {
+                tooltip.transition().duration(200).style('opacity', 0)               
+            })
 
 
     })
