@@ -76,13 +76,11 @@ document.addEventListener('DOMContentLoaded', function(){
                 .attr("cy", d => yScale(d.timeSeconds))
                 .attr("r", 4)
                 .attr("data-xvalue", d => d.Year)
-                .attr("data-yvalue", d => d.timeSeconds)
-                .style('fill', d => {
-                    d.Doping ? 'rgb(31, 119, 180)' : 'rgb(255, 127, 14)'                            
-                })
+                .attr("data-yvalue", d => d.timeSecondsr)
+                .style('fill', d => d.Doping.length > 0 ? 'lightblue' : 'orange' )
             .attr('transform', `translate(${left}, ${0})`)
             .on("mouseover", (e,d)=> {
-                console.log(e)
+                console.log(d.Doping.length>0)
                 tooltip.transition().duration(200).style('opacity', 0.9)
                 tooltip
                     .html(
