@@ -78,6 +78,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 .attr("data-xvalue", d => d.Year)
                 .attr("data-yvalue", d => d.timeSecondsr)
                 .style('fill', d => d.Doping.length > 0 ? 'lightblue' : 'orange' )
+                .style('border', "grey")
             .attr('transform', `translate(${left}, ${0})`)
             .on("mouseover", (e,d)=> {
                 console.log(d.Doping.length>0)
