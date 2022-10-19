@@ -120,8 +120,8 @@ document.addEventListener('DOMContentLoaded', function(){
                 tooltip.transition().duration(200).style('opacity', 0.9)
                 tooltip
                     .html(
-                        `${d.Name}: ${d.Nationality} </br> </br>
-                        ${d.Year}, ${d.Time} </br>
+                        `${d.Name}: ${d.Nationality} </br>
+                        Year: ${d.Year}, Time: ${d.Time} </br></br>
                         ${d.Doping}
                         `
                     )
