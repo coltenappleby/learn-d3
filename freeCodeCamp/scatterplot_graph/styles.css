@@ -6,9 +6,16 @@ body {
 .container {
   background-color: white;
 }
-rect {
+/* rect {
   fill: rgb(43, 43, 255);
+} */
+
+text {
+  position: absolute;			
+  text-align: right;	
+  font: 12px sans-serif;		
 }
+
 
 h1 {
   font-size: 2em;
@@ -31,7 +38,7 @@ button:hover {
   border: 1px solid #0F5897;
 }
 div #tooltip {	
-  font-size: .25em;
+  /* font-size: .25em; */
   position: absolute;			
   text-align: left;			
   width: 120px;					
