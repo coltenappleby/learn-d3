@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function(){
     const url = 'https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/global-temperature.json'
 
     // Size of plot
-    const width = 800
+    const width = 1000
     const height = 400
     const margin = {"top": 30, "right": 50, "bottom": 30, "left": 70}
 
@@ -37,8 +37,6 @@ document.addEventListener('DOMContentLoaded', function(){
 
         const years = data.map(d => d.year)
 
-        console.log(years)
-
         // Axis Scales
         const xScale = d3.scaleBand()
                         .domain(years)
@@ -60,9 +58,24 @@ document.addEventListener('DOMContentLoaded', function(){
             .attr("id", "y-axis")
             .attr('transform', `translate(${margin.left}, ${margin.top})`)
             .call(d3.axisLeft(yScale))
+
+        const minVar = d3.min(data, d => d.variance)
+        const maxVar = d3.max(data, d => d.variance)
+        // Cell's Colors
+        let myColor = d3.scaleSequential()
+            .interpolator(d3.interpolateInferno)
+            .domain([minVar,maxVar])
+
+        const highlightCell = (cell) => {
+            cell
+                .attr('stroke', 'black')
+        }
+        const clearHighlightCell = (cell) => {
+            cell
+                .attr('stroke', 'none')
+        }
         
         // Time for Squares
-
         const squares = svg.append('g')
             .selectAll('cell')
             .data(data)
@@ -72,12 +85,13 @@ document.addEventListener('DOMContentLoaded', function(){
                 .attr('x', d => xScale(d.year))
                 .attr('y', d => yScale(months[d.month]))
                 .attr('height', height/12)
-                .attr('width', width/(d3.max(data, d => d.year)- d3.min(data, d => d.year)))
+                .attr('width', width/(d3.max(data, d => d.year) - d3.min(data, d => d.year)))
                 .attr('transform', `translate(${margin.left}, ${margin.top})`)
                 .attr('data-month', d => d.month)
                 .attr('data-year', d => d.year)
                 .attr('data-temp', d => d.temp)
-            .on("mouseover", (e,d) => {
+                .style('fill', d => myColor(d.variance))
+            .on("mouseover", (e,d,n) => {
                 tooltip.transition().duration(200).style('opacity', 0.9)
                 tooltip
                     .html(
@@ -87,12 +101,14 @@ document.addEventListener('DOMContentLoaded', function(){
                         `
                     )
                     .style('opacity', 1)
-                    .style('left', e.pageX+'px')
-                    .style('top', e.pageY+'px')
+                    .style('left', e.pageX+10+'px')
+                    .style('top', e.pageY-10+'px')
                     .attr('data-year', d.year)
+                d3.select(e.target).call(highlightCell)
             })
-            .on("mouseout", () => {
-                tooltip.transition().duration(200).style('opacity', 0)               
+            .on("mouseout", (e) => {
+                tooltip.transition().duration(200).style('opacity', 0)
+                d3.select(e.target).call(clearHighlightCell)         
             })
 
         // Time for our dots
