@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     // Size of plot
     const width = 1000
-    const height = 400
+    const height = 600
     const margin = {"top": 30, "right": 50, "bottom": 30, "left": 70}
 
     // Setting up the SVG
@@ -75,6 +75,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 .attr('stroke', 'none')
         }
         
+        const formatTemp = d3.format(".3n")	
         // Time for Squares
         const squares = svg.append('g')
             .selectAll('cell')
@@ -83,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function(){
             .append('rect')
                 .attr('class', 'cell')
                 .attr('x', d => xScale(d.year))
-                .attr('y', d => yScale(months[d.month]))
+                .attr('y', d => yScale(months[d.month-1]))
                 .attr('height', height/12)
                 .attr('width', width/(d3.max(data, d => d.year) - d3.min(data, d => d.year)))
                 .attr('transform', `translate(${margin.left}, ${margin.top})`)
@@ -96,8 +97,8 @@ document.addEventListener('DOMContentLoaded', function(){
                 tooltip
                     .html(
                         `${d.year} - ${d.monthName} </br>
-                        ${d.temp}^C <br/>
-                        ${d.variance}^C
+                        ${formatTemp(d.temp)}<span>&#176;</span>C <br/>
+                        ${formatTemp(d.variance)}<span>&#176;</span>C
                         `
                     )
                     .style('opacity', 1)
