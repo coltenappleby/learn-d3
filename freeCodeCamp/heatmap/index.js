@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function(){
     // Size of plot
     const width = 1000
     const height = 600
-    const margin = {"top": 30, "right": 50, "bottom": 30, "left": 70}
+    const margin = {"top": 30, "right": 50, "bottom": 130, "left": 70}
 
     // Setting up the SVG
     const svg = d3.select(".container")
@@ -75,9 +75,10 @@ document.addEventListener('DOMContentLoaded', function(){
                 .attr('stroke', 'none')
         }
         
-        const formatTemp = d3.format(".3n")	
         // Time for Squares
+        const formatTemp = d3.format(".3n")	
         const squares = svg.append('g')
+            .attr('id', 'data')
             .selectAll('cell')
             .data(data)
             .enter()
@@ -88,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 .attr('height', height/12)
                 .attr('width', width/(d3.max(data, d => d.year) - d3.min(data, d => d.year)))
                 .attr('transform', `translate(${margin.left}, ${margin.top})`)
-                .attr('data-month', d => d.month)
+                .attr('data-month', d => d.month-1)
                 .attr('data-year', d => d.year)
                 .attr('data-temp', d => d.temp)
                 .style('fill', d => myColor(d.variance))
@@ -111,46 +112,17 @@ document.addEventListener('DOMContentLoaded', function(){
                 tooltip.transition().duration(200).style('opacity', 0)
                 d3.select(e.target).call(clearHighlightCell)         
             })
+        
 
-        // Time for our dots
-        // const dots = svg.append('g')
-        //     .selectAll('dot')
-        //     .data(data)
-        //     .enter()
-        //     .append("circle")
-        //         .attr('class', 'dot')
-        //         .attr("cx", d => xScale(d.Year))
-        //         .attr("cy", d => yScale(d.timeSeconds))
-        //         .attr("r", 4)
-        //         .attr("data-xvalue", d => d.Year)
-        //         .attr("data-yvalue", d => d.timeSeconds)
-        //         .style('fill', d => d.Doping.length > 0 ? 'lightblue' : 'orange' )
-        //         .style('stroke', '#000')
-        //         .style('border', "grey")
-        //     .attr('transform', `translate(${margin.left}, ${margin.top})`)
-        //     .on("mouseover", (e,d)=> {
-        //         console.log(d.Doping.length>0)
-        //         tooltip.transition().duration(200).style('opacity', 0.9)
-        //         tooltip
-        //             .html(
-        //                 `${d.Name}: ${d.Nationality} </br>
-        //                 Year: ${d.Year}, Time: ${d.Time} </br></br>
-        //                 ${d.Doping}
-        //                 `
-        //             )
-        //             .style('opacity', 1)
-        //             .style('left', e.pageX+'px')
-        //             .style('top', e.pageY+'px')
-        //             .style('font-size', '6px')
-        //             .attr('data-year', d.Year)
-        //     })
-        //     .on("mouseout", () => {
-        //         tooltip.transition().duration(200).style('opacity', 0)               
-        //     })
+        // Legend
+        const legendScale = d3.scaleLinear()
+            .domain([minVar, maxVar])
+            .range([0,300])
 
+        
+        console.log(legendScale(0))
+        
+        
 
-    })
-            
-    
-    
+    }) 
 });
