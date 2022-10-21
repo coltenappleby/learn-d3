@@ -61,11 +61,17 @@ document.addEventListener('DOMContentLoaded', function(){
 
         const minVar = d3.min(data, d => d.variance)
         const maxVar = d3.max(data, d => d.variance)
+
+        const minTemp = d3.min(data, d => d.temp)
+        const maxTemp = d3.max(data, d => d.temp)
+
+
         // Cell's Colors
         let myColor = d3.scaleSequential()
             .interpolator(d3.interpolateInferno)
-            .domain([minVar,maxVar])
+            .domain([minTemp,maxTemp])
 
+        // Hover Border
         const highlightCell = (cell) => {
             cell
                 .attr('stroke', 'black')
@@ -92,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 .attr('data-month', d => d.month-1)
                 .attr('data-year', d => d.year)
                 .attr('data-temp', d => d.temp)
-                .style('fill', d => myColor(d.variance))
+                .style('fill', d => myColor(d.temp))
             .on("mouseover", (e,d,n) => {
                 tooltip.transition().duration(200).style('opacity', 0.9)
                 tooltip
@@ -116,13 +122,36 @@ document.addEventListener('DOMContentLoaded', function(){
 
         // Legend
         const legendScale = d3.scaleLinear()
-            .domain([minVar, maxVar])
+            .domain([minTemp, maxTemp])
             .range([0,300])
+        
+        const temps = data.map(d => d.temp)
+        const quants = [0, .25, .5, .75, 1].map((q) => {
+            return(d3.quantile(temps, q))
+        })
+
+        svg.append("g")
+            .attr("id", "legend-axis")
+            .attr('transform', `translate(${margin.left+margin.right}, ${height+margin.top+margin.bottom/2})`)
+            .call(d3.axisBottom(legendScale).ticks(5))
+        
+        const tiles = svg.append('g')
+            .attr('id', 'legend-colors')
+            .selectAll('legend-cells')
+            .data(quants)
+            .enter()
+            .append('rect')
+                .attr('class', 'legend-cells')
+                .attr('x', d => legendScale(d))
+                .attr('y', 0)
+                .attr('height', 40)
+                .attr('width', 40)
+                .attr('transform', `translate(${margin.left+margin.right}, ${height+margin.top+margin.bottom/2})`)
+                .style('fill', d=> myColor(d))
 
         
-        console.log(legendScale(0))
-        
-        
+        // console.log(legendScale(0))
+
 
     }) 
 });
