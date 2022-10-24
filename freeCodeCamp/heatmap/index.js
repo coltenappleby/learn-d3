@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function(){
     const margin = {"top": 30, "right": 50, "bottom": 130, "left": 70}
 
     // Setting up the SVG
-    const svg = d3.select(".container")
+    const svg = d3.select("body")
         .append("svg")
         .attr("height", height + margin.top + margin.bottom)
         .attr("width", width + margin.left + margin.right)
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
         // Cell's Colors
         let myColor = d3.scaleSequential()
-            .interpolator(d3.interpolateInferno)
+            .interpolator(d3.interpolateRdYlBu)
             .domain([minTemp,maxTemp])
 
         // Hover Border
@@ -121,18 +121,21 @@ document.addEventListener('DOMContentLoaded', function(){
         
 
         // Legend
-        const legendScale = d3.scaleLinear()
-            .domain([minTemp, maxTemp])
-            .range([0,300])
         
         const temps = data.map(d => d.temp)
         const quants = [0, .25, .5, .75, 1].map((q) => {
             return(d3.quantile(temps, q))
         })
+        
+        const legendScale = d3.scaleBand()
+            .domain(quants)
+            .range([0,300])
+        console.log(quants)
+        console.log(quants.map((q) => legendScale(q)))
 
         svg.append("g")
             .attr("id", "legend-axis")
-            .attr('transform', `translate(${margin.left+margin.right}, ${height+margin.top+margin.bottom/2})`)
+            .attr('transform', `translate(${margin.left+margin.right}, ${height+margin.top+margin.bottom/2+45})`)
             .call(d3.axisBottom(legendScale).ticks(5))
         
         const tiles = svg.append('g')

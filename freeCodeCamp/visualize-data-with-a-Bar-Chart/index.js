@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function(){
     const url = 'https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json'
 
     // Size of plot
-    const width = 800
+    const width = 1200
     const height = 400
     const margin = {"top": 25, "right": 25, "bottom": 25, "left": 40}
     const left = 100;
