@@ -21,18 +21,28 @@ document.addEventListener('DOMContentLoaded', function(){
         .style("opacity", 0)
         .style("padding", "5px")   
 
-    d3.json(urlCounty).then((rawGeoData) => {
-        const countyFeatures = rawGeoData.objects.counties.geometries.map((poly) => poly.arcs[0])
-        console.log(countyFeatures)
-        console.log(rawGeoData.objects.counties.geometries)
-        svg.selectAll("path")
-            .data(countyFeatures)
-            .enter()
-            .append("path")
-                .attr("d", d3.geoPath())
-                .style("stroke", "#fff")
-                .style("stroke-width", "1")
-                // .style('stroke', 'black')
+    Promise.all([
+            d3.json(urlCounty),
+            d3.json(urlEDU)
+        ]) .then(([data1, data2]) => {
+            const us = data1;
+            const edu = data2;
+            console.log(us.objects.counties)
+            svg.append("path")
+                .datum(topojson.feature(us, us.objects.counties))
+                .attr("d", d3.geo.path().projection(d3.geo.mercator()));
+        })
 
-    }) 
+        // let projection = d3.geoEquirectangular();
+
+        // let geoGenerator = d3.geoPath()
+        //     .projection(projection);
+
+        // let u = svg
+        //     .selectAll('path')
+        //     .data(rawGeoData.objects.counties.geometries)
+        //     .join('path')
+        //     .attr('d', geoGenerator);
+
+    
 });
