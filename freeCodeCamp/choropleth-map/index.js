@@ -21,16 +21,56 @@ document.addEventListener('DOMContentLoaded', function(){
         .style("opacity", 0)
         .style("padding", "5px")   
 
+    const landColor = "green";
+    const landStroke = "grey";
+
+    const pathGenerator = d3.geoPath();
+
     Promise.all([
             d3.json(urlCounty),
             d3.json(urlEDU)
-        ]) .then(([data1, data2]) => {
+        ]).then(([data1, data2]) => {
             const us = data1;
             const edu = data2;
             console.log(us.objects.counties)
-            svg.append("path")
-                .datum(topojson.feature(us, us.objects.counties))
-                .attr("d", d3.geo.path().projection(d3.geo.mercator()));
+            // svg.append("path")
+            //     .append('g')
+            //     .datum(topojson.feature(us, us.objects.counties))
+            //     .enter()
+            //     .attr('d', pathGenerator)
+            //     .attr('fill', landColor)
+            //     .attr('stroke', landStroke)
+            //     .attr('stroke-width', 1);
+
+            svg
+                .append('path')
+
+                // Shows only lines that there are multiple. IE only shows borders between two states
+                // -cleaner
+
+                // .datum(
+                //   topojson.mesh(us, us.objects.states, function (a, b) {
+                //     return a !== b;
+                //   })
+                // )
+                .datum(
+                  topojson.mesh(us, us.objects.counties, function (a, b) {
+                    return a !== b;
+                  })
+                )
+                .attr('class', 'states')
+                .attr('d', pathGenerator)
+                .attr('fill', 'none')
+                .attr('stroke', 'black')
+
+            svg                
+                .append('path')
+                .datum(topojson.feature(us, us.objects.states))
+                .attr('class', 'states')
+                .attr('d', pathGenerator)
+                .attr('fill', 'none')
+                .attr('stroke', 'pink')
+
         })
 
         // let projection = d3.geoEquirectangular();
