@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function(){
             const us = data1;
             const edu = data2;
             console.log(edu)
-            console.log(us)
+            console.log(us)         
 
             const eduLevel = edu.map(d => d.bachelorsOrHigher)
 
@@ -42,54 +42,30 @@ document.addEventListener('DOMContentLoaded', function(){
                 .domain([d3.min(eduLevel), d3.max(eduLevel)])
 
             const getCounty = (id) => {
-                const county = edu.find((e) => {
-                    e.fips === id
-                })
+                const county = edu.find(({fips}) => fips === id)
                 return county
             }
-            console.log(topojson.feature(us, us.objects.counties).features)
-            svg // The counties by EDU level
-                .append('g')
+            console.log(getCounty(5089))
+            
+            const counties = svg.append('g')
                 .attr('class', 'counties')
                 .selectAll('path')
-                .datum(topojson.feature(us, us.objects.counties).features)
+                .data(topojson.feature(us, us.objects.counties).features)
                 .enter()
                 .append('path')
-                    .attr('testing', d=>{console.log(d)})
+                    .attr('d', pathGenerator)
+                    // .attr('testing', d=>{console.log(getCounty(d.id))})
                     .attr('class', 'county')
-                    .attr('data-fips', d =>{d.fips})
+                    .attr('data-fips', d => d.id)
                     .attr('data-education', (d) => getCounty(d.id).bachelorsOrHigher)
                     .style('fill', d=> colorScale(getCounty(d.id).bachelorsOrHigher))
-                    .attr('d', pathGenerator)
-
-            svg
-                .append('path')
-
-                // Shows only lines that there are multiple. IE only shows borders between two states
-                // -cleaner
-
-                // .datum(
-                //   topojson.mesh(us, us.objects.states, function (a, b) {
-                //     return a !== b;
-                //   })
-                // )
-                // .datum(
-                //   topojson.mesh(us, us.objects.counties, function (a, b) {
-                //     return a !== b;
-                //   })
-                // )
-                // .attr('class', 'states')
-                // .attr('d', pathGenerator)
-                // .attr('fill', 'none')
-                // .attr('stroke', 'black')
-
-            svg                
+            const states = svg                
                 .append('path')
                 .datum(topojson.feature(us, us.objects.states))
                 .attr('class', 'states')
                 .attr('d', pathGenerator)
                 .attr('fill', 'none')
-                .attr('stroke', 'pink')
+                .attr('stroke', 'grey')
 
         })
 
