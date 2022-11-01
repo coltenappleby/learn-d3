@@ -9,20 +9,17 @@ document.addEventListener('DOMContentLoaded', function(){
     const margin = {"top": 30, "right": 50, "bottom": 130, "left": 70}
 
     // Setting up the SVG
-    const svg = d3.select("body")
+    const svg = d3.select(".container")
         .append("svg")
         .attr("height", height + margin.top + margin.bottom)
         .attr("width", width + margin.left + margin.right)
 
     // Tooltip
-    let tooltip = d3.select("body")
+    let tooltip = d3.select(".container")
         .append("div")
         .attr('id', 'tooltip')
         .style("opacity", 0)
         .style("padding", "5px")   
-
-    const landColor = "green";
-    const landStroke = "grey";
 
     const pathGenerator = d3.geoPath();
 
@@ -59,6 +56,22 @@ document.addEventListener('DOMContentLoaded', function(){
                     .attr('data-fips', d => d.id)
                     .attr('data-education', (d) => getCounty(d.id).bachelorsOrHigher)
                     .style('fill', d=> colorScale(getCounty(d.id).bachelorsOrHigher))
+                    .on('mouseover', (e,d) => {
+                        const county = getCounty(d.id)
+                        tooltip.transition().duration(200).style('opacity', 0.9)
+                        tooltip
+                            .html(
+                                `${county.area_name}, ${county.state}: ${county.bachelorsOrHigher}%`
+                            )
+                            .attr('data-education', county.bachelorsOrHigher)
+                            .style('opacity', 1)
+                            .style('left', e.pageX+'px')
+                            .style('top', e.pageY+'px')
+                            .attr('data-year', d.Year)
+                    .on('mouseout', function () {
+                        tooltip.style('opacity', 0);
+                    });
+                    })
             const states = svg                
                 .append('path')
                 .datum(topojson.feature(us, us.objects.states))
@@ -66,19 +79,5 @@ document.addEventListener('DOMContentLoaded', function(){
                 .attr('d', pathGenerator)
                 .attr('fill', 'none')
                 .attr('stroke', 'grey')
-
-        })
-
-        // let projection = d3.geoEquirectangular();
-
-        // let geoGenerator = d3.geoPath()
-        //     .projection(projection);
-
-        // let u = svg
-        //     .selectAll('path')
-        //     .data(rawGeoData.objects.counties.geometries)
-        //     .join('path')
-        //     .attr('d', geoGenerator);
-
-    
+        })    
 });
