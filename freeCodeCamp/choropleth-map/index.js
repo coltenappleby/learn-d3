@@ -32,11 +32,13 @@ document.addEventListener('DOMContentLoaded', function(){
             console.log(edu)
             console.log(us)         
 
-            const eduLevel = edu.map(d => d.bachelorsOrHigher)
+            const eduLevel = edu.map(d => d.bachelorsOrHigher);
+            const minEduLevel = d3.min(eduLevel);
+            const maxEduLevel = d3.max(eduLevel);
 
             let colorScale = d3.scaleSequential()
                 .interpolator(d3.interpolateRdYlBu)
-                .domain([d3.min(eduLevel), d3.max(eduLevel)])
+                .domain([minEduLevel, maxEduLevel])
 
             const getCounty = (id) => {
                 const county = edu.find(({fips}) => fips === id)
@@ -79,5 +81,59 @@ document.addEventListener('DOMContentLoaded', function(){
                 .attr('d', pathGenerator)
                 .attr('fill', 'none')
                 .attr('stroke', 'grey')
-        })    
+
+            // Legend
+            const legend = svg.append('g')
+                .attr('id', 'legend')
+
+            const legendNums = (minTemp, maxTemp, count) => {
+                let array = []
+                let step = (maxTemp-minTemp) / count
+                let base = minTemp
+                for ( let i = 1; i < count; i++){
+                    array.push(base + i * step)
+                }
+                return array
+            }
+            const quants = legendNums(minEduLevel, maxEduLevel, 7)
+
+            const legendScale = d3.scaleLinear()
+                .domain([quants[0], quants[5]])
+                .range([0,300])
+
+            let threshold = d3.scaleThreshold()
+                .domain(quants)
+                .range(quants.map((d)=>colorScale(d)))
+
+            legend.append("g")
+                .attr("id", "legend-axis")
+                .attr('transform', `translate(${margin.left+margin.right}, ${height+margin.top+margin.bottom/2+20})`)
+                .call(d3.axisBottom(legendScale)
+                    .tickSize(13)
+                    .tickValues(threshold.domain())
+                )
+
+            const tiles = legend.append('g')
+                .attr('id', 'legend-colors')
+                .selectAll('legend-cells')
+                .data(threshold.range().map((color) => {
+                    let d = threshold.invertExtent(color); //tells you the start and stop
+                    if (d[0] === null) {
+                        d[0] = legendScale.domain()[0];
+                      }
+                    if (d[1] === null) {
+                        d[1] = legendScale.domain()[1];
+                      }
+                      return d;
+                }))
+                .enter()
+                .append('rect')
+                    .attr('class', 'legend-cells')
+                    .attr('x', d => legendScale(d[0]))
+                    .attr('width', d => legendScale(d[1]) - legendScale(d[0]))
+                    .attr('height', 20)
+                    .style('fill', d => colorScale(d[0]))
+                    .attr('transform', `translate(${margin.left+margin.right}, ${height+margin.top+margin.bottom/2})`)
+
+        })
 });
