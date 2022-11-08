@@ -70,9 +70,9 @@ document.addEventListener('DOMContentLoaded', function(){
                             .style('left', e.pageX+'px')
                             .style('top', e.pageY+'px')
                             .attr('data-year', d.Year)
-                    .on('mouseout', function () {
-                        tooltip.style('opacity', 0);
-                    });
+                        })
+                    .on("mouseout", () => {
+                        tooltip.transition().duration(200).style('opacity', 0)               
                     })
             const states = svg                
                 .append('path')
