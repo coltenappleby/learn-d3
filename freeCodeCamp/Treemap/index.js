@@ -1,5 +1,3 @@
-const { color } = require("d3");
-
 document.addEventListener('DOMContentLoaded', function(){
     
     const url = 'https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/video-game-sales-data.json';
@@ -50,10 +48,14 @@ document.addEventListener('DOMContentLoaded', function(){
 
         const data = d3.hierarchy(rawData)
         console.log(data.leaves())
+        console.log(data)
+        data.sum((d) => d.data.value)
         d3.treemap()
             .size([width, height])
             .padding(4)
         (data)
+
+        console.log(data.leaves())
 
         const colors = d3.scaleOrdinal()
             .domain(rawData.children)
