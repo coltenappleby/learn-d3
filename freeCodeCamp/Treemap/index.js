@@ -44,33 +44,41 @@ document.addEventListener('DOMContentLoaded', function(){
 
     
     d3.json(url).then((rawData) => { 
-        console.log(rawData.children)
 
-        const data = d3.hierarchy(rawData)
-        console.log(data.leaves())
-        console.log(data)
-        data.sum((d) => d.data.value)
+        const root = d3
+            .hierarchy(rawData)
+                .sum(d=>d.value)
+                .sort((a,b) => { b.height - a.height || b.value - a.value })
+
         d3.treemap()
             .size([width, height])
             .padding(4)
-        (data)
+        (root)
 
-        console.log(data.leaves())
+        console.log(root.leaves())
 
         const colors = d3.scaleOrdinal()
             .domain(rawData.children)
             .range(colorArray)
 
 
-        svg.selectAll("rect")
-            .data(data.leaves())
+        let nodes = svg.selectAll("rect")
+            .data(root.leaves())
             .enter()
             .append('rect')
                 .attr('x', d => d.x0)
                 .attr('y', d => d.y0)
                 .attr('width', d => d.x1 - d.x0)
                 .attr('height', d => d.y1 - d.y0)
-                .style('fill', d => color(d.parent.data.name))
+                .attr('game-name', d => d.data.name)
+                .style('fill', d => colors(d.parent.data.name))
+        
+        
+        nodes.append('text')
+            .attr('x', 4)
+            .attr('y', 14)
+            .text((d) => d.data.name)
+            .style('fill', 'black')
     })
 
 
