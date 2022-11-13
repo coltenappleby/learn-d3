@@ -48,37 +48,67 @@ document.addEventListener('DOMContentLoaded', function(){
         const root = d3
             .hierarchy(rawData)
                 .sum(d=>d.value)
-                .sort((a,b) => { b.height - a.height || b.value - a.value })
+                .sort((a,b) => { 
+                    return b.value - a.value 
+                })
 
         d3.treemap()
             .size([width, height])
             .padding(4)
         (root)
 
-        console.log(root.leaves())
+        const colors = d3.scaleOrdinal(d3.schemeAccent)
+            .domain(root.children.map(d => d.data.name))
 
-        const colors = d3.scaleOrdinal()
-            .domain(rawData.children)
-            .range(colorArray)
+        // This is wrong. Should be by Console
+        const salesOpacity = d3.scaleLinear()
+            .domain(root.leaves().map(d => d.value))
+            .range([0.5, 1])
 
-
-        let nodes = svg.selectAll("rect")
+        let nodes = svg
+            .selectAll('g')
             .data(root.leaves())
             .enter()
+            .append('g')
+            .attr('class', 'node-group')
+            .attr('transform', d => `translate(${d.x0}, ${d.y0})`)
+
+        nodes
             .append('rect')
-                .attr('x', d => d.x0)
-                .attr('y', d => d.y0)
                 .attr('width', d => d.x1 - d.x0)
                 .attr('height', d => d.y1 - d.y0)
-                .attr('game-name', d => d.data.name)
+                .attr('data-name', d => d.data.name)
+                .attr('data-category', d=> d.data.category)
+                .attr('data-value', d=> d.data.value)
                 .style('fill', d => colors(d.parent.data.name))
-        
+                .style('opacity', d => salesOpacity(d.value))
+                .attr('class', 'tile')
         
         nodes.append('text')
             .attr('x', 4)
             .attr('y', 14)
             .text((d) => d.data.name)
             .style('fill', 'black')
+
+        nodes
+            .on("mousemove", (e,d)=> {
+                console.log(d.data)
+                tooltip.transition().duration(200).style('opacity', 0.9)
+                tooltip
+                    .html(
+                        `<b>Console</b>: ${d.data.category}</br>
+                        <b>Game</b>: ${d.data.name}</br>
+                        <b>Sales</b>: ${d.data.value} millions
+                        `
+                    )
+                    .style('opacity', 1)
+                    .style('left', e.pageX+'px')
+                    .style('top', e.pageY+'px')
+                    .attr('data-value', d.data.value)
+            })
+            .on("mouseout", () => {
+                tooltip.transition().duration(200).style('opacity', 0)               
+            })
     })
 
 
