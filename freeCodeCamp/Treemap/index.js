@@ -85,10 +85,21 @@ document.addEventListener('DOMContentLoaded', function(){
                 .attr('class', 'tile')
         
         nodes.append('text')
-            .attr('x', 4)
-            .attr('y', 14)
-            .text((d) => d.data.name)
-            .style('fill', 'black')
+        .attr('class', 'tile-text')
+        .selectAll('tspan')
+        .data((d) => {
+            return d.data.name.split(/(?=[A-Z][^A-Z])/g);
+          })
+        .enter()
+        .append('tspan')
+        .attr('x', 4)
+        .attr('y', function (d, i) {
+          return 13 + i * 10;
+        })
+        // .style("overflow-y", "auto")
+        .text(function (d) {
+          return d;
+        });
 
         nodes
             .on("mousemove", (e,d)=> {
