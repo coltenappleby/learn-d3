@@ -1,0 +1,836 @@
+[
+    {
+      "Name": "maroon",
+      "HTML string code": "maroon",
+      "HEX_code": "#800000",
+      "RGB_code": "(128,0,0)"
+    },
+    {
+      "Name": "dark red",
+      "HTML string code": "darkred",
+      "HEX_code": "#8B0000",
+      "RGB_code": "(139,0,0)"
+    },
+    {
+      "Name": "brown",
+      "HTML string code": "brown",
+      "HEX_code": "#A52A2A",
+      "RGB_code": "(165,42,42)"
+    },
+    {
+      "Name": "fire brick",
+      "HTML string code": "firebrick",
+      "HEX_code": "#B22222",
+      "RGB_code": "(178,34,34)"
+    },
+    {
+      "Name": "crimson",
+      "HTML string code": "crimson",
+      "HEX_code": "#DC143C",
+      "RGB_code": "(220,20,60)"
+    },
+    {
+      "Name": "red",
+      "HTML string code": "red",
+      "HEX_code": "#FF0000",
+      "RGB_code": "(255,0,0)"
+    },
+    {
+      "Name": "tomato",
+      "HTML string code": "tomato",
+      "HEX_code": "#FF6347",
+      "RGB_code": "(255,99,71)"
+    },
+    {
+      "Name": "coral",
+      "HTML string code": "coral",
+      "HEX_code": "#FF7F50",
+      "RGB_code": "(255,127,80)"
+    },
+    {
+      "Name": "indian red",
+      "HTML string code": "indianred",
+      "HEX_code": "#CD5C5C",
+      "RGB_code": "(205,92,92)"
+    },
+    {
+      "Name": "light coral",
+      "HTML string code": "lightcoral",
+      "HEX_code": "#F08080",
+      "RGB_code": "(240,128,128)"
+    },
+    {
+      "Name": "dark salmon",
+      "HTML string code": "darksalmon",
+      "HEX_code": "#E9967A",
+      "RGB_code": "(233,150,122)"
+    },
+    {
+      "Name": "salmon",
+      "HTML string code": "salmon",
+      "HEX_code": "#FA8072",
+      "RGB_code": "(250,128,114)"
+    },
+    {
+      "Name": "light salmon",
+      "HTML string code": "lightsalmon",
+      "HEX_code": "#FFA07A",
+      "RGB_code": "(255,160,122)"
+    },
+    {
+      "Name": "orange red",
+      "HTML string code": "orangered",
+      "HEX_code": "#FF4500",
+      "RGB_code": "(255,69,0)"
+    },
+    {
+      "Name": "dark orange",
+      "HTML string code": "darkorange",
+      "HEX_code": "#FF8C00",
+      "RGB_code": "(255,140,0)"
+    },
+    {
+      "Name": "orange",
+      "HTML string code": "orange",
+      "HEX_code": "#FFA500",
+      "RGB_code": "(255,165,0)"
+    },
+    {
+      "Name": "gold",
+      "HTML string code": "gold",
+      "HEX_code": "#FFD700",
+      "RGB_code": "(255,215,0)"
+    },
+    {
+      "Name": "dark golden rod",
+      "HTML string code": "darkgoldenrod",
+      "HEX_code": "#B8860B",
+      "RGB_code": "(184,134,11)"
+    },
+    {
+      "Name": "golden rod",
+      "HTML string code": "goldenrod",
+      "HEX_code": "#DAA520",
+      "RGB_code": "(218,165,32)"
+    },
+    {
+      "Name": "pale golden rod",
+      "HTML string code": "palegoldenrod",
+      "HEX_code": "#EEE8AA",
+      "RGB_code": "(238,232,170)"
+    },
+    {
+      "Name": "dark khaki",
+      "HTML string code": "darkkhaki",
+      "HEX_code": "#BDB76B",
+      "RGB_code": "(189,183,107)"
+    },
+    {
+      "Name": "khaki",
+      "HTML string code": "khaki",
+      "HEX_code": "#F0E68C",
+      "RGB_code": "(240,230,140)"
+    },
+    {
+      "Name": "olive",
+      "HTML string code": "olive",
+      "HEX_code": "#808000",
+      "RGB_code": "(128,128,0)"
+    },
+    {
+      "Name": "yellow",
+      "HTML string code": "yellow",
+      "HEX_code": "#FFFF00",
+      "RGB_code": "(255,255,0)"
+    },
+    {
+      "Name": "yellow green",
+      "HTML string code": "yellowgreen",
+      "HEX_code": "#9ACD32",
+      "RGB_code": "(154,205,50)"
+    },
+    {
+      "Name": "dark olive green",
+      "HTML string code": "darkolivegreen",
+      "HEX_code": "#556B2F",
+      "RGB_code": "(85,107,47)"
+    },
+    {
+      "Name": "olive drab",
+      "HTML string code": "olivedrab",
+      "HEX_code": "#6B8E23",
+      "RGB_code": "(107,142,35)"
+    },
+    {
+      "Name": "lawn green",
+      "HTML string code": "lawngreen",
+      "HEX_code": "#7CFC00",
+      "RGB_code": "(124,252,0)"
+    },
+    {
+      "Name": "chartreuse",
+      "HTML string code": "chartreuse",
+      "HEX_code": "#7FFF00",
+      "RGB_code": "(127,255,0)"
+    },
+    {
+      "Name": "green yellow",
+      "HTML string code": "greenyellow",
+      "HEX_code": "#ADFF2F",
+      "RGB_code": "(173,255,47)"
+    },
+    {
+      "Name": "dark green",
+      "HTML string code": "darkgreen",
+      "HEX_code": "#006400",
+      "RGB_code": "(0,100,0)"
+    },
+    {
+      "Name": "green",
+      "HTML string code": "green",
+      "HEX_code": "#008000",
+      "RGB_code": "(0,128,0)"
+    },
+    {
+      "Name": "forest green",
+      "HTML string code": "forestgreen",
+      "HEX_code": "#228B22",
+      "RGB_code": "(34,139,34)"
+    },
+    {
+      "Name": "lime",
+      "HTML string code": "lime",
+      "HEX_code": "#00FF00",
+      "RGB_code": "(0,255,0)"
+    },
+    {
+      "Name": "lime green",
+      "HTML string code": "limegreen",
+      "HEX_code": "#32CD32",
+      "RGB_code": "(50,205,50)"
+    },
+    {
+      "Name": "light green",
+      "HTML string code": "lightgreen",
+      "HEX_code": "#90EE90",
+      "RGB_code": "(144,238,144)"
+    },
+    {
+      "Name": "pale green",
+      "HTML string code": "palegreen",
+      "HEX_code": "#98FB98",
+      "RGB_code": "(152,251,152)"
+    },
+    {
+      "Name": "dark sea green",
+      "HTML string code": "darkseagreen",
+      "HEX_code": "#8FBC8F",
+      "RGB_code": "(143,188,143)"
+    },
+    {
+      "Name": "medium spring green",
+      "HTML string code": "mediumspringgreen",
+      "HEX_code": "#00FA9A",
+      "RGB_code": "(0,250,154)"
+    },
+    {
+      "Name": "spring green",
+      "HTML string code": "springgreen",
+      "HEX_code": "#00FF7F",
+      "RGB_code": "(0,255,127)"
+    },
+    {
+      "Name": "sea green",
+      "HTML string code": "seagreen",
+      "HEX_code": "#2E8B57",
+      "RGB_code": "(46,139,87)"
+    },
+    {
+      "Name": "medium aquamarine",
+      "HTML string code": "mediumaquamarine",
+      "HEX_code": "#66CDAA",
+      "RGB_code": "(102,205,170)"
+    },
+    {
+      "Name": "medium sea green",
+      "HTML string code": "mediumseagreen",
+      "HEX_code": "#3CB371",
+      "RGB_code": "(60,179,113)"
+    },
+    {
+      "Name": "light sea green",
+      "HTML string code": "lightseagreen",
+      "HEX_code": "#20B2AA",
+      "RGB_code": "(32,178,170)"
+    },
+    {
+      "Name": "dark slate gray",
+      "HTML string code": "darkslategray",
+      "HEX_code": "#2F4F4F",
+      "RGB_code": "(47,79,79)"
+    },
+    {
+      "Name": "teal",
+      "HTML string code": "teal",
+      "HEX_code": "#008080",
+      "RGB_code": "(0,128,128)"
+    },
+    {
+      "Name": "dark cyan",
+      "HTML string code": "darkcyan",
+      "HEX_code": "#008B8B",
+      "RGB_code": "(0,139,139)"
+    },
+    {
+      "Name": "aqua",
+      "HTML string code": "aqua",
+      "HEX_code": "#00FFFF",
+      "RGB_code": "(0,255,255)"
+    },
+    {
+      "Name": "cyan",
+      "HTML string code": "cyan",
+      "HEX_code": "#00FFFF",
+      "RGB_code": "(0,255,255)"
+    },
+    {
+      "Name": "light cyan",
+      "HTML string code": "lightcyan",
+      "HEX_code": "#E0FFFF",
+      "RGB_code": "(224,255,255)"
+    },
+    {
+      "Name": "dark turquoise",
+      "HTML string code": "darkturquoise",
+      "HEX_code": "#00CED1",
+      "RGB_code": "(0,206,209)"
+    },
+    {
+      "Name": "turquoise",
+      "HTML string code": "turquoise",
+      "HEX_code": "#40E0D0",
+      "RGB_code": "(64,224,208)"
+    },
+    {
+      "Name": "medium turquoise",
+      "HTML string code": "mediumturquoise",
+      "HEX_code": "#48D1CC",
+      "RGB_code": "(72,209,204)"
+    },
+    {
+      "Name": "pale turquoise",
+      "HTML string code": "paleturquoise",
+      "HEX_code": "#AFEEEE",
+      "RGB_code": "(175,238,238)"
+    },
+    {
+      "Name": "aquamarine",
+      "HTML string code": "aquamarine",
+      "HEX_code": "#7FFFD4",
+      "RGB_code": "(127,255,212)"
+    },
+    {
+      "Name": "powder blue",
+      "HTML string code": "powderblue",
+      "HEX_code": "#B0E0E6",
+      "RGB_code": "(176,224,230)"
+    },
+    {
+      "Name": "cadet blue",
+      "HTML string code": "cadetblue",
+      "HEX_code": "#5F9EA0",
+      "RGB_code": "(95,158,160)"
+    },
+    {
+      "Name": "steel blue",
+      "HTML string code": "steelblue",
+      "HEX_code": "#4682B4",
+      "RGB_code": "(70,130,180)"
+    },
+    {
+      "Name": "cornflower blue",
+      "HTML string code": "cornflowerblue",
+      "HEX_code": "#6495ED",
+      "RGB_code": "(100,149,237)"
+    },
+    {
+      "Name": "deep sky blue",
+      "HTML string code": "deepskyblue",
+      "HEX_code": "#00BFFF",
+      "RGB_code": "(0,191,255)"
+    },
+    {
+      "Name": "dodger blue",
+      "HTML string code": "dodgerblue",
+      "HEX_code": "#1E90FF",
+      "RGB_code": "(30,144,255)"
+    },
+    {
+      "Name": "light blue",
+      "HTML string code": "lightblue",
+      "HEX_code": "#ADD8E6",
+      "RGB_code": "(173,216,230)"
+    },
+    {
+      "Name": "sky blue",
+      "HTML string code": "skyblue",
+      "HEX_code": "#87CEEB",
+      "RGB_code": "(135,206,235)"
+    },
+    {
+      "Name": "light sky blue",
+      "HTML string code": "lightskyblue",
+      "HEX_code": "#87CEFA",
+      "RGB_code": "(135,206,250)"
+    },
+    {
+      "Name": "midnight blue",
+      "HTML string code": "midnightblue",
+      "HEX_code": "#191970",
+      "RGB_code": "(25,25,112)"
+    },
+    {
+      "Name": "navy",
+      "HTML string code": "navy",
+      "HEX_code": "#000080",
+      "RGB_code": "(0,0,128)"
+    },
+    {
+      "Name": "dark blue",
+      "HTML string code": "darkblue",
+      "HEX_code": "#00008B",
+      "RGB_code": "(0,0,139)"
+    },
+    {
+      "Name": "medium blue",
+      "HTML string code": "mediumblue",
+      "HEX_code": "#0000CD",
+      "RGB_code": "(0,0,205)"
+    },
+    {
+      "Name": "blue",
+      "HTML string code": "blue",
+      "HEX_code": "#0000FF",
+      "RGB_code": "(0,0,255)"
+    },
+    {
+      "Name": "royal blue",
+      "HTML string code": "royalblue",
+      "HEX_code": "#4169E1",
+      "RGB_code": "(65,105,225)"
+    },
+    {
+      "Name": "blue violet",
+      "HTML string code": "blueviolet",
+      "HEX_code": "#8A2BE2",
+      "RGB_code": "(138,43,226)"
+    },
+    {
+      "Name": "indigo",
+      "HTML string code": "indigo",
+      "HEX_code": "#4B0082",
+      "RGB_code": "(75,0,130)"
+    },
+    {
+      "Name": "dark slate blue",
+      "HTML string code": "darkslateblue",
+      "HEX_code": "#483D8B",
+      "RGB_code": "(72,61,139)"
+    },
+    {
+      "Name": "slate blue",
+      "HTML string code": "slateblue",
+      "HEX_code": "#6A5ACD",
+      "RGB_code": "(106,90,205)"
+    },
+    {
+      "Name": "medium slate blue",
+      "HTML string code": "mediumslateblue",
+      "HEX_code": "#7B68EE",
+      "RGB_code": "(123,104,238)"
+    },
+    {
+      "Name": "medium purple",
+      "HTML string code": "mediumpurple",
+      "HEX_code": "#9370DB",
+      "RGB_code": "(147,112,219)"
+    },
+    {
+      "Name": "dark magenta",
+      "HTML string code": "darkmagenta",
+      "HEX_code": "#8B008B",
+      "RGB_code": "(139,0,139)"
+    },
+    {
+      "Name": "dark violet",
+      "HTML string code": "darkviolet",
+      "HEX_code": "#9400D3",
+      "RGB_code": "(148,0,211)"
+    },
+    {
+      "Name": "dark orchid",
+      "HTML string code": "darkorchid",
+      "HEX_code": "#9932CC",
+      "RGB_code": "(153,50,204)"
+    },
+    {
+      "Name": "medium orchid",
+      "HTML string code": "mediumorchid",
+      "HEX_code": "#BA55D3",
+      "RGB_code": "(186,85,211)"
+    },
+    {
+      "Name": "purple",
+      "HTML string code": "purple",
+      "HEX_code": "#800080",
+      "RGB_code": "(128,0,128)"
+    },
+    {
+      "Name": "thistle",
+      "HTML string code": "thistle",
+      "HEX_code": "#D8BFD8",
+      "RGB_code": "(216,191,216)"
+    },
+    {
+      "Name": "plum",
+      "HTML string code": "plum",
+      "HEX_code": "#DDA0DD",
+      "RGB_code": "(221,160,221)"
+    },
+    {
+      "Name": "violet",
+      "HTML string code": "violet",
+      "HEX_code": "#EE82EE",
+      "RGB_code": "(238,130,238)"
+    },
+    {
+      "Name": "fuchsia",
+      "HTML string code": "fuchsia",
+      "HEX_code": "#FF00FF",
+      "RGB_code": "(255,0,255)"
+    },
+    {
+      "Name": "orchid",
+      "HTML string code": "orchid",
+      "HEX_code": "#DA70D6",
+      "RGB_code": "(218,112,214)"
+    },
+    {
+      "Name": "medium violet red",
+      "HTML string code": "mediumvioletred",
+      "HEX_code": "#C71585",
+      "RGB_code": "(199,21,133)"
+    },
+    {
+      "Name": "pale violet red",
+      "HTML string code": "palevioletred",
+      "HEX_code": "#DB7093",
+      "RGB_code": "(219,112,147)"
+    },
+    {
+      "Name": "deep pink",
+      "HTML string code": "deeppink",
+      "HEX_code": "#FF1493",
+      "RGB_code": "(255,20,147)"
+    },
+    {
+      "Name": "hot pink",
+      "HTML string code": "hotpink",
+      "HEX_code": "#FF69B4",
+      "RGB_code": "(255,105,180)"
+    },
+    {
+      "Name": "light pink",
+      "HTML string code": "lightpink",
+      "HEX_code": "#FFB6C1",
+      "RGB_code": "(255,182,193)"
+    },
+    {
+      "Name": "pink",
+      "HTML string code": "pink",
+      "HEX_code": "#FFC0CB",
+      "RGB_code": "(255,192,203)"
+    },
+    {
+      "Name": "antique white",
+      "HTML string code": "antiquewhite",
+      "HEX_code": "#FAEBD7",
+      "RGB_code": "(250,235,215)"
+    },
+    {
+      "Name": "beige",
+      "HTML string code": "beige",
+      "HEX_code": "#F5F5DC",
+      "RGB_code": "(245,245,220)"
+    },
+    {
+      "Name": "bisque",
+      "HTML string code": "bisque",
+      "HEX_code": "#FFE4C4",
+      "RGB_code": "(255,228,196)"
+    },
+    {
+      "Name": "blanched almond",
+      "HTML string code": "blanchedalmond",
+      "HEX_code": "#FFEBCD",
+      "RGB_code": "(255,235,205)"
+    },
+    {
+      "Name": "wheat",
+      "HTML string code": "wheat",
+      "HEX_code": "#F5DEB3",
+      "RGB_code": "(245,222,179)"
+    },
+    {
+      "Name": "corn silk",
+      "HTML string code": "cornsilk",
+      "HEX_code": "#FFF8DC",
+      "RGB_code": "(255,248,220)"
+    },
+    {
+      "Name": "lemon chiffon",
+      "HTML string code": "lemonchiffon",
+      "HEX_code": "#FFFACD",
+      "RGB_code": "(255,250,205)"
+    },
+    {
+      "Name": "light golden rod yellow",
+      "HTML string code": "lightgoldenrodyellow",
+      "HEX_code": "#FAFAD2",
+      "RGB_code": "(250,250,210)"
+    },
+    {
+      "Name": "light yellow",
+      "HTML string code": "lightyellow",
+      "HEX_code": "#FFFFE0",
+      "RGB_code": "(255,255,224)"
+    },
+    {
+      "Name": "saddle brown",
+      "HTML string code": "saddlebrown",
+      "HEX_code": "#8B4513",
+      "RGB_code": "(139,69,19)"
+    },
+    {
+      "Name": "sienna",
+      "HTML string code": "sienna",
+      "HEX_code": "#A0522D",
+      "RGB_code": "(160,82,45)"
+    },
+    {
+      "Name": "chocolate",
+      "HTML string code": "chocolate",
+      "HEX_code": "#D2691E",
+      "RGB_code": "(210,105,30)"
+    },
+    {
+      "Name": "peru",
+      "HTML string code": "peru",
+      "HEX_code": "#CD853F",
+      "RGB_code": "(205,133,63)"
+    },
+    {
+      "Name": "sandy brown",
+      "HTML string code": "sandybrown",
+      "HEX_code": "#F4A460",
+      "RGB_code": "(244,164,96)"
+    },
+    {
+      "Name": "burly wood",
+      "HTML string code": "burlywood",
+      "HEX_code": "#DEB887",
+      "RGB_code": "(222,184,135)"
+    },
+    {
+      "Name": "tan",
+      "HTML string code": "tan",
+      "HEX_code": "#D2B48C",
+      "RGB_code": "(210,180,140)"
+    },
+    {
+      "Name": "rosy brown",
+      "HTML string code": "rosybrown",
+      "HEX_code": "#BC8F8F",
+      "RGB_code": "(188,143,143)"
+    },
+    {
+      "Name": "moccasin",
+      "HTML string code": "moccasin",
+      "HEX_code": "#FFE4B5",
+      "RGB_code": "(255,228,181)"
+    },
+    {
+      "Name": "navajo white",
+      "HTML string code": "navajowhite",
+      "HEX_code": "#FFDEAD",
+      "RGB_code": "(255,222,173)"
+    },
+    {
+      "Name": "peach puff",
+      "HTML string code": "peachpuff",
+      "HEX_code": "#FFDAB9",
+      "RGB_code": "(255,218,185)"
+    },
+    {
+      "Name": "misty rose",
+      "HTML string code": "mistyrose",
+      "HEX_code": "#FFE4E1",
+      "RGB_code": "(255,228,225)"
+    },
+    {
+      "Name": "lavender blush",
+      "HTML string code": "lavenderblush",
+      "HEX_code": "#FFF0F5",
+      "RGB_code": "(255,240,245)"
+    },
+    {
+      "Name": "linen",
+      "HTML string code": "linen",
+      "HEX_code": "#FAF0E6",
+      "RGB_code": "(250,240,230)"
+    },
+    {
+      "Name": "old lace",
+      "HTML string code": "oldlace",
+      "HEX_code": "#FDF5E6",
+      "RGB_code": "(253,245,230)"
+    },
+    {
+      "Name": "papaya whip",
+      "HTML string code": "papayawhip",
+      "HEX_code": "#FFEFD5",
+      "RGB_code": "(255,239,213)"
+    },
+    {
+      "Name": "sea shell",
+      "HTML string code": "seashell",
+      "HEX_code": "#FFF5EE",
+      "RGB_code": "(255,245,238)"
+    },
+    {
+      "Name": "mint cream",
+      "HTML string code": "mintcream",
+      "HEX_code": "#F5FFFA",
+      "RGB_code": "(245,255,250)"
+    },
+    {
+      "Name": "slate gray",
+      "HTML string code": "slategray",
+      "HEX_code": "#708090",
+      "RGB_code": "(112,128,144)"
+    },
+    {
+      "Name": "light slate gray",
+      "HTML string code": "lightslategray",
+      "HEX_code": "#778899",
+      "RGB_code": "(119,136,153)"
+    },
+    {
+      "Name": "light steel blue",
+      "HTML string code": "lightsteelblue",
+      "HEX_code": "#B0C4DE",
+      "RGB_code": "(176,196,222)"
+    },
+    {
+      "Name": "lavender",
+      "HTML string code": "lavender",
+      "HEX_code": "#E6E6FA",
+      "RGB_code": "(230,230,250)"
+    },
+    {
+      "Name": "floral white",
+      "HTML string code": "floralwhite",
+      "HEX_code": "#FFFAF0",
+      "RGB_code": "(255,250,240)"
+    },
+    {
+      "Name": "alice blue",
+      "HTML string code": "aliceblue",
+      "HEX_code": "#F0F8FF",
+      "RGB_code": "(240,248,255)"
+    },
+    {
+      "Name": "ghost white",
+      "HTML string code": "ghostwhite",
+      "HEX_code": "#F8F8FF",
+      "RGB_code": "(248,248,255)"
+    },
+    {
+      "Name": "honey dew",
+      "HTML string code": "honeydew",
+      "HEX_code": "#F0FFF0",
+      "RGB_code": "(240,255,240)"
+    },
+    {
+      "Name": "ivory",
+      "HTML string code": "ivory",
+      "HEX_code": "#FFFFF0",
+      "RGB_code": "(255,255,240)"
+    },
+    {
+      "Name": "azure",
+      "HTML string code": "azure",
+      "HEX_code": "#F0FFFF",
+      "RGB_code": "(240,255,255)"
+    },
+    {
+      "Name": "snow",
+      "HTML string code": "snow",
+      "HEX_code": "#FFFAFA",
+      "RGB_code": "(255,250,250)"
+    },
+    {
+      "Name": "black",
+      "HTML string code": "black",
+      "HEX_code": "#000000",
+      "RGB_code": "(0,0,0)"
+    },
+    {
+      "Name": "dim gray",
+      "HTML string code": "dimgray",
+      "HEX_code": "#696969",
+      "RGB_code": "(105,105,105)"
+    },
+    {
+      "Name": "gray",
+      "HTML string code": "gray",
+      "HEX_code": "#808080",
+      "RGB_code": "(128,128,128)"
+    },
+    {
+      "Name": "dark gray / dark grey",
+      "HTML string code": "darkgray",
+      "HEX_code": "#A9A9A9",
+      "RGB_code": "(169,169,169)"
+    },
+    {
+      "Name": "silver",
+      "HTML string code": "silver",
+      "HEX_code": "#C0C0C0",
+      "RGB_code": "(192,192,192)"
+    },
+    {
+      "Name": "light gray / light grey",
+      "HTML string code": "lightgray",
+      "HEX_code": "#D3D3D3",
+      "RGB_code": "(211,211,211)"
+    },
+    {
+      "Name": "gainsboro",
+      "HTML string code": "gainsboro",
+      "HEX_code": "#DCDCDC",
+      "RGB_code": "(220,220,220)"
+    },
+    {
+      "Name": "white smoke",
+      "HTML string code": "whitesmoke",
+      "HEX_code": "#F5F5F5",
+      "RGB_code": "(245,245,245)"
+    },
+    {
+      "Name": "white",
+      "HTML string code": "white",
+      "HEX_code": "#FFFFFF",
+      "RGB_code": "(255,255,255)"
+    }
+  ]
