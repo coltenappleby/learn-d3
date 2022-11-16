@@ -83,27 +83,56 @@ document.addEventListener('DOMContentLoaded', function(){
                 .style('fill', d => colors(d.parent.data.name))
                 .style('opacity', d => salesOpacity(d.value))
                 .attr('class', 'tile')
-        
+
         nodes.append('text')
-        .attr('class', 'tile-text')
-        .selectAll('tspan')
-        .data((d) => {
-            return d.data.name.split(/(?=[A-Z][^A-Z])/g);
-          })
-        .enter()
-        .append('tspan')
-        .attr('x', 4)
-        .attr('y', function (d, i) {
-          return 13 + i * 10;
-        })
-        // .style("overflow-y", "auto")
-        .text(function (d) {
-          return d;
+            .attr('class', 'text')
+            // .attr('x', 5)
+            .attr('y', 13)
+            .attr('dy', 0) // wrap requires a dy
+            .attr('width', d => d.x1 - d.x0)
+            .text(d => d.data.name)
+            .call(wrap)
+
+
+        // Mike Bostock Code
+    function wrap(text) {
+        console.log(text)
+        text.each(function() {
+        var text = d3.select(this),
+            words = text.text().split(/\s+/).reverse(),
+            word,
+            width = parseFloat(text.attr('width'));
+            line = [],
+            lineNumber = 0,
+            lineHeight = 1.1, // ems
+            y = text.attr("y"),
+            dy = parseFloat(text.attr("dy")),
+            tspan = text
+                .text(null)
+                .append("tspan")
+                .attr("x", 2)
+                .attr("y", y)
+                .attr("dy", dy + "em");
+        while (word = words.pop()) {
+            line.push(word);
+            tspan.text(line.join(" "));
+            if (tspan.node().getComputedTextLength() > width) {
+                line.pop();
+                tspan.text(line.join(" "));
+                line = [word];
+                tspan = text
+                    .append("tspan")
+                    .attr("x", 2)
+                    .attr("y", y)
+                    .attr("dy", ++lineNumber * lineHeight + dy + "em")
+                    .text(word);
+            }
+        }
         });
+    }
 
         nodes
             .on("mousemove", (e,d)=> {
-                console.log(d.data)
                 tooltip.transition().duration(200).style('opacity', 0.9)
                 tooltip
                     .html(
@@ -126,3 +155,25 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 
 
+
+
+// Text Wrap
+        
+// Works but it not perfect 
+// Each word is its own line
+    // nodes.append('text')
+    //     .attr('class', 'tile-text')
+    //     .selectAll('tspan')
+    //     .data((d) => {
+    //         return d.data.name.split(/(?=[A-Z][^A-Z])/g);
+    //     })
+    //     .enter()
+    //     .append('tspan')
+    //     .attr('x', 4)
+    //     .attr('y', function (d, i) {
+    //         return 13 + i * 10;
+    //     })
+    //     // .style("overflow-y", "auto")
+    //     .text((d) => {
+    //         return d;
+    //     });
