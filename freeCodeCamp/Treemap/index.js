@@ -185,7 +185,7 @@ document.addEventListener('DOMContentLoaded', function(){
             .attr('height', RECT_HEIGHT)
             .attr('width', RECT_WIDTH)
             .style('fill', d => colors(d))
-            .attr('class', 'legend-rect')
+            .attr('class', 'legend-item')
         
         elements.append('text')
             .attr('x', RECT_WIDTH*1.2)
