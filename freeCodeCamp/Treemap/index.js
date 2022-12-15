@@ -53,6 +53,8 @@ document.addEventListener('DOMContentLoaded', function(){
     
     d3.json(url).then((rawData) => { 
 
+        console.log(rawData)
+
         const root = d3
             .hierarchy(rawData)
                 .sum(d=>d.value)
@@ -64,6 +66,8 @@ document.addEventListener('DOMContentLoaded', function(){
             .size([width, height])
             .padding(1)
         (root)
+
+        console.log(root)
 
         const colors = d3.scaleOrdinal(d3.schemeAccent)
             .domain(root.children.map(d => d.data.name))

@@ -49,8 +49,6 @@ document.addEventListener('DOMContentLoaded', function(){
             .attr("width", 500)
             .attr('transform', `translate(${0}, ${0})`)
 
-
-    
     d3.json(url).then((rawData) => { 
 
         console.log(rawData)
@@ -62,20 +60,27 @@ document.addEventListener('DOMContentLoaded', function(){
             return listen
           })
 
+        // const artistGroup = d3.group(listens, d=>d.artistName, d=>d.trackName) // Not what I am looking for
 
-        const artistGroup = d3.group(listens, d=>d.artistName, d=>d.trackName)
-
-        const artists = d3.rollup(listens, v => d3.sum(v, d => d.seconds), d=> d.artistName)
-        const hierarchy = d3.hierarchy(artistGroup)
+        const artists = d3.rollup(listens, v => d3.sum(v, d=> d.seconds), d=> d.artistName, d=> d.trackName,) //This is what I want
+        const hierarchy = d3.hierarchy(artists)
         console.log(hierarchy)
 
+        childrenAccessorFn = ([ key, value ]) => value.size && Array.from(value);
 
-        const root = d3
-            .hierarchy(artists)
-                .sum(d=>d.seconds)
-                .sort((a,b) => { 
-                    return b.seconds - a.seconds 
-                })
+        const root = d3.hierarchy([null, artists], childrenAccessorFn)
+            .sum(([key, value]) => value)
+            .sort((a, b) => b.value - a.value);
+
+        console.log(root)
+
+        // function constraint(jab) {
+        //     return jab_dist(d3.jab("white"), jab) > 35
+        //     && jab.a**2 + jab.b**2 > 10**2
+        //     && jab.J > 50;
+        //   }
+        
+        // console.log()
 
         d3.treemap()
             .size([width, height])
