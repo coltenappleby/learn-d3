@@ -86,14 +86,14 @@ document.addEventListener('DOMContentLoaded', function(){
             .size([width, height])
             .padding(1)
         (root)
-
+        
         const colors = d3.scaleOrdinal(d3.schemeAccent)
-            .domain(root.children.map(d => d.data.name))
+            .domain(root.children.map(d => d.parent.data[0]))
 
         // This is wrong. Should be by Console
-        const salesOpacity = d3.scaleLinear()
-            .domain(root.leaves().map(d => d.value))
-            .range([0.5, 1])
+        // const salesOpacity = d3.scaleLinear()
+        //     .domain(root.leaves().map(d => d.value))
+        //     .range([0.5, 1])
 
         let nodes = svg
             .selectAll('g')
@@ -107,11 +107,8 @@ document.addEventListener('DOMContentLoaded', function(){
             .append('rect')
                 .attr('width', d => d.x1 - d.x0)
                 .attr('height', d => d.y1 - d.y0)
-                .attr('data-name', d => d.data.name)
-                .attr('data-category', d=> d.data.category)
-                .attr('data-value', d=> d.data.value)
-                .style('fill', d => colors(d.parent.data.name))
-                .style('opacity', d => salesOpacity(d.value))
+                .style('fill', d => colors(d.parent.data[0]))
+                // .style('opacity', d => salesOpacity(d.value))
                 .attr('class', 'tile')
 
         nodes.append('text')
@@ -165,9 +162,9 @@ document.addEventListener('DOMContentLoaded', function(){
                 tooltip.transition().duration(200).style('opacity', 0.9)
                 tooltip
                     .html(
-                        `<b>Console</b>: ${d.data.category}</br>
-                        <b>Game</b>: ${d.data.name}</br>
-                        <b>Sales</b>: ${d.data.value} millions
+                        `<b>Artist</b>: ${d.parent.data[0]}</br>
+                        <b>Song</b>: ${d.data[0]}</br>
+                        <b>Total Seconds</b>: ${d.data[1]/60} Mins
                         `
                     )
                     .style('opacity', 1)
