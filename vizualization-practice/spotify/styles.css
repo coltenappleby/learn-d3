@@ -21,8 +21,8 @@ title {
 div #tooltip {	
   position: absolute;			
   text-align: left;			
-  width: 280px;					
-  height: 40px;					
+  /* width: 280px;					
+  height: 40px;					 */
   padding: 10px;				
   font: 12px sans-serif;		
   background: lightsteelblue;	
