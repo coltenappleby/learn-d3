@@ -40,8 +40,6 @@ document.addEventListener('DOMContentLoaded', function(){
         .append("div")
         .attr('id', 'tooltip')
         .style("opacity", 0)
-        // .attr("height", 280)
-        // .attr("width", 40)
         .style("padding", "5px")   
 
     let legend = d3.select("body")
@@ -60,15 +58,12 @@ document.addEventListener('DOMContentLoaded', function(){
             return listen
           })
 
-        // const artistGroup = d3.group(listens, d=>d.artistName, d=>d.trackName) // Not what I am looking for
         const artists = d3.rollup(listens, v => d3.sum(v, d=> d.seconds), d=> d.artistName, d=> d.trackName,) //This is what I want
-        const hierarchy = d3.hierarchy(artists)
-        
-        
+ 
         const childrenAccessorFn = ([ key, value ]) => value.size && Array.from(value);
         const root = d3.hierarchy([null, artists], childrenAccessorFn)
-        .sum(([key, value]) => value)
-        .sort((a, b) => b.value - a.value);
+            .sum(([key, value]) => value)
+            .sort((a, b) => b.value - a.value);
         
         
         d3.treemap()
@@ -76,33 +71,15 @@ document.addEventListener('DOMContentLoaded', function(){
             .padding(1)
         (root)
 
-        console.log(root.leaves())
-        
-        // function constraint(jab) {
-        //     return jab_dist(d3.jab("white"), jab) > 35
-        //     && jab.a**2 + jab.b**2 > 10**2
-        //     && jab.J > 50;
-        //   }
-        
-        const color = d3.scaleSequential(d3.interpolateRainbow).domain([root.leaves()[0].parent.value, root.leaves()[root.leaves().length-1].parent.value])
+        // const totalTime = d3.sum(root.children.slice(0, 20).map(d => d.value))
+        // console.log(totalTime)
+        // html.select('listens').innerhtml(totalTime)
 
-        console.log(color(root.leaves()[0].parent.value))
-        console.log(color(root.leaves()[root.leaves().length-1].parent.value))
-        
-        
 
         const colors = d3.scaleOrdinal(d3.schemeAccent)
             .domain(root.children.map(d => d.parent.value))
 
         const timeFormat = d3.format(".1f"); // Time Format
-
-        // This is wrong. Should be by Console
-        // const salesOpacity = d3.scaleLinear()
-        //     .domain(root.leaves().map(d => d.value))
-        //     .range([0.5, 1])
-
-        console.log(root.children)
-        console.log(root.leaves())
 
         let nodes = svg
             .selectAll('g')
@@ -119,16 +96,6 @@ document.addEventListener('DOMContentLoaded', function(){
                 .style('fill', d => colors(d.parent.value))
                 // .style('opacity', d => salesOpacity(d.value))
                 .attr('class', 'tile')
-
-        // nodes.append('text')
-        //     .attr('class', 'text')
-        //     // .attr('x', 5)
-        //     .attr('y', 13)
-        //     .attr('dy', 0) // wrap requires a dy
-        //     .attr('width', d => d.x1 - d.x0)
-        //     .text(d => d.data.name)
-        //     .call(wrap)
-
 
         // Mike Bostock Code
         function wrap(text) {
@@ -190,8 +157,6 @@ document.addEventListener('DOMContentLoaded', function(){
         // Lets make the Legend
             
         const categories = root.children.slice(0, 20)//.map(d => d.data[0])
-
-        console.log(categories)
 
         const V_SPACING = 40;
         const H_SPACING = 200;
