@@ -56,8 +56,9 @@ document.addEventListener('DOMContentLoaded', function(){
 
         data = d3.group(tempData, d => d.stname, d=> d.groupname, d=> d.popularname) //d => d.confdesc
         let nodes = d3.hierarchy(data)
+        console.log(data)
         console.log(nodes)
-
+        
         const svg = d3.select(".container")
             .append("svg")
             .attr("height", height + top)
