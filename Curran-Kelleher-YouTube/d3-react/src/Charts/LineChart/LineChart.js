@@ -46,6 +46,7 @@ const ScatterPlot = ({ width = 960, height = 500 }) => {
 		.range([innerHeight,0]) //takes the min and max of the areas of the chart
 		.nice();
 
+	console.log(xScale.ticks())	
 	return (
 		<>
 			<h1> Line Chart </h1>

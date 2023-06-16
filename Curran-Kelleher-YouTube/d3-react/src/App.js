@@ -12,8 +12,8 @@ const App = () => {
   return (
     <>
       {/* <WorldMap/> */}
-      {/* <LineChart/> */}
-      <ScatterPlot/>
+      <LineChart/>
+      {/* <ScatterPlot/> */}
       {/* <BarChart/> */}
       {/* <BarChartGanttTest />` */}
       {/* <PieChart/> */}

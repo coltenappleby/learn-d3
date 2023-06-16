@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function(){
     
-    const url = 'https://gist.githubusercontent.com/coltenappleby/9e67e257c4fec0542268b5f594dd9831/raw/f0afdb9fb631fb39d54798c4855f8f7e50022d22/tiered-package.csv'
+    const url = 'https://gist.githubusercontent.com/coltenappleby/9f7a36cc268ee2692cdbb2700eea64f2/raw/4eec8c1d4bb12afab46055b9d1572011ab68d062/tiered-package.csv'
 
     // import rawData from  data.json
 
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function(){
             let tempData = results.data.map((d) => {
                 return {
                     id: d.externalId,
-                    name: d.stname,
+                    name: d.name,
                     parentId: d.externalId_parent,
                 }
             })
@@ -38,6 +38,8 @@ document.addEventListener('DOMContentLoaded', function(){
                 .id(d => d.id)
                 .parentId(d => d.parentId)
             let root = stratify(tempData)
+
+            console.log(root)
 
             const svg = d3.select(".container")
                 .append("svg")
